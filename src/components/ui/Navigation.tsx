@@ -10,9 +10,8 @@ const Navigation = () => {
 
   const navItems = [
     { id: 'hero', primary: 'Home', secondary: 'The Throne', href: '#hero' },
-    { id: 'about', primary: 'About', secondary: 'The Journey', href: '#about' },
-    { id: 'education', primary: 'Education', secondary: 'Houses of Learning', href: '#education' },
     { id: 'skills', primary: 'Skills', secondary: 'The Arsenal', href: '#skills' },
+    { id: 'education', primary: 'Education', secondary: 'Houses of Learning', href: '#education' },
     { id: 'projects', primary: 'Portfolio', secondary: 'Epic Conquests', href: '#projects' },
     { id: 'experience', primary: 'Experience', secondary: 'Path of Honor', href: '#experience' },
     { id: 'contact', primary: 'Contact', secondary: 'Send Raven', href: '#contact' }

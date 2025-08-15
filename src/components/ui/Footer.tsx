@@ -3,7 +3,6 @@ import {
   Heart, 
   Code2, 
   MapPin, 
-  Calendar,
   Linkedin,
   Github,
   Mail,
@@ -14,10 +13,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { label: 'The Journey', href: '#about' },
     { label: 'The Arsenal', href: '#skills' },
+    { label: 'Houses of Learning', href: '#education' },
     { label: 'Epic Conquests', href: '#projects' },
-    { label: 'The Path', href: '#experience' }
+    { label: 'Path of Honor', href: '#experience' }
   ];
 
   const socialLinks = [
@@ -70,15 +69,9 @@ const Footer = () => {
               </p>
               
               {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="flex items-center gap-2 text-sm">
-                  <MapPin className="w-4 h-4 text-gold-accent" />
-                  <span className="text-stark-white">San Francisco, CA</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Calendar className="w-4 h-4 text-gold-accent" />
-                  <span className="text-stark-white">Available June 2025</span>
-                </div>
+              <div className="flex items-center gap-2 text-sm mb-6">
+                <MapPin className="w-4 h-4 text-gold-accent" />
+                <span className="text-stark-white">San Francisco, CA</span>
               </div>
 
               {/* Social Links */}

@@ -8,7 +8,6 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import LoadingScreen from './components/ui/LoadingScreen';
 import Navigation from './components/ui/Navigation';
 import Hero from './components/sections/Hero';
-import About from './components/sections/About';
 import Education from './components/sections/Education';
 import Skills from './components/sections/Skills';
 import Projects from './components/sections/Projects';
@@ -79,27 +78,22 @@ function App() {
             <Hero />
           </section>
 
-          {/* About Section */}
-          <section id="about">
-            <About />
-          </section>
-
-          {/* Education Section */}
-          <section id="education">
-            <Education />
-          </section>
-
-          {/* Skills Section */}
+          {/* Skills Section - Show capabilities first */}
           <section id="skills">
             <Skills />
           </section>
 
-          {/* Projects Section */}
+          {/* Education Section - Academic credentials */}
+          <section id="education">
+            <Education />
+          </section>
+
+          {/* Projects Section - Portfolio work */}
           <section id="projects">
             <Projects />
           </section>
 
-          {/* Experience Section */}
+          {/* Experience Section - Professional background */}
           <section id="experience">
             <Experience />
           </section>

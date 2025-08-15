@@ -182,7 +182,11 @@ const Hero = () => {
                 e.currentTarget.style.color = 'var(--accent-primary)';
               }}
             >
-              <span>💼</span>
+              <img 
+                src={`${import.meta.env.BASE_URL}logos/linkedin-svgrepo-com.svg`} 
+                alt="LinkedIn" 
+                className="w-4 h-4"
+              />
               <span className="font-medium">LinkedIn</span>
             </a>
             
@@ -204,7 +208,11 @@ const Hero = () => {
                 e.currentTarget.style.color = 'var(--accent-primary)';
               }}
             >
-              <span>💻</span>
+              <img 
+                src={`${import.meta.env.BASE_URL}logos/github-svgrepo-com.svg`} 
+                alt="GitHub" 
+                className="w-4 h-4"
+              />
               <span className="font-medium">GitHub</span>
             </a>
             
@@ -226,7 +234,11 @@ const Hero = () => {
                 e.currentTarget.style.color = 'var(--accent-primary)';
               }}
             >
-              <span>📝</span>
+              <img 
+                src={`${import.meta.env.BASE_URL}logos/medium-svgrepo-com.svg`} 
+                alt="Medium" 
+                className="w-4 h-4"
+              />
               <span className="font-medium">Medium</span>
             </a>
           </motion.div>

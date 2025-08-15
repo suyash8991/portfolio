@@ -62,9 +62,7 @@ const Skills = () => {
         { name: "Pandas", icon: `${import.meta.env.BASE_URL}logos/pandas.svg` },
         { name: "NumPy", icon: `${import.meta.env.BASE_URL}logos/numpy.svg` },
         { name: "Power BI", icon: `${import.meta.env.BASE_URL}logos/power-bi.svg` },
-        { name: "Qlik Sense", icon: `${import.meta.env.BASE_URL}logos/qlik-sense.svg` },
-        { name: "ETL Pipelines", icon: `${import.meta.env.BASE_URL}logos/etl-pipelines.svg` },
-        { name: "Data Visualization", icon: `${import.meta.env.BASE_URL}logos/data-visualization.svg` }
+        { name: "Qlik Sense", icon: `${import.meta.env.BASE_URL}logos/qlik-sense.svg` }
       ]
     },
     {

@@ -5,10 +5,7 @@ import { useForm } from 'react-hook-form';
 import { 
   Send, 
   MapPin, 
-  Phone, 
   Mail, 
-  Linkedin, 
-  Github,
   ExternalLink,
   CheckCircle,
   AlertCircle
@@ -78,28 +75,27 @@ const Contact = () => {
       value: 'suyash.sreekumar@gmail.com',
       href: 'mailto:suyash.sreekumar@gmail.com',
       color: 'text-gold-accent'
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      label: 'Summon',
-      value: '+1 (541) 286-2159',
-      href: 'tel:+15412862159',
-      color: 'text-ice-blue'
     }
   ];
 
   const socialLinks = [
     {
       name: 'LinkedIn',
-      icon: <Linkedin className="w-5 h-5" />,
+      icon: `${import.meta.env.BASE_URL}logos/linkedin-svgrepo-com.svg`,
       href: 'https://linkedin.com/in/suyash-sreekumar',
-      color: 'hover:text-ice-blue'
+      color: 'hover:opacity-80'
     },
     {
       name: 'GitHub',
-      icon: <Github className="w-5 h-5" />,
+      icon: `${import.meta.env.BASE_URL}logos/github-svgrepo-com.svg`,
       href: 'https://github.com/suyash-sreekumar',
-      color: 'hover:text-gold-accent'
+      color: 'hover:opacity-80'
+    },
+    {
+      name: 'Medium',
+      icon: `${import.meta.env.BASE_URL}logos/medium-svgrepo-com.svg`,
+      href: 'https://medium.com/@suyash-sreekumar',
+      color: 'hover:opacity-80'
     }
   ];
 
@@ -179,7 +175,11 @@ const Contact = () => {
                           rel="noopener noreferrer"
                           className={`flex items-center gap-2 px-4 py-2 bg-iron-grey text-stark-white rounded transition-colors ${link.color} hover:bg-opacity-80`}
                         >
-                          {link.icon}
+                          <img 
+                            src={link.icon} 
+                            alt={`${link.name} logo`}
+                            className="w-5 h-5 object-contain"
+                          />
                           <span>{link.name}</span>
                           <ExternalLink className="w-4 h-4" />
                         </a>
@@ -204,9 +204,6 @@ const Contact = () => {
                     <li>• Software Engineering with AI focus</li>
                     <li>• Research and Development opportunities</li>
                   </ul>
-                  <div className="mt-4 text-xs text-steel-blue">
-                    Available for full-time positions starting June 2025
-                  </div>
                 </div>
               </div>
             </motion.div>
