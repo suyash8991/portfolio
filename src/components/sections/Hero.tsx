@@ -85,7 +85,32 @@ const Hero = () => {
             className={`text-3xl md:text-4xl lg:text-5xl font-medieval font-bold mb-3 hero-name ${theme}-mode`}
             style={{ 
               position: 'relative',
-              zIndex: 2
+              zIndex: 2,
+              background: theme === 'ice' 
+                ? 'linear-gradient(45deg, #3b82f6, #1e40af, #2563eb)' 
+                : 'linear-gradient(45deg, #f97316, #ea580c, #dc2626)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              backgroundSize: '200% 200%',
+              animation: 'gradient-shift 3s ease-in-out infinite',
+              textShadow: theme === 'ice' 
+                ? '0 0 20px rgba(59, 130, 246, 0.3)'
+                : '0 0 20px rgba(249, 115, 22, 0.3)'
+            }}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+            onMouseEnter={() => {
+              // Trigger sparkle animation on hover
+              const nameElement = document.querySelector('.hero-name');
+              if (nameElement) {
+                nameElement.classList.add('sparkle-effect');
+                setTimeout(() => {
+                  nameElement.classList.remove('sparkle-effect');
+                }, 1000);
+              }
             }}
           >
             Suyash Sreekumar

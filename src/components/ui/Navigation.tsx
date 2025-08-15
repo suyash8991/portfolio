@@ -66,52 +66,73 @@ const Navigation = () => {
           borderBottomColor: isScrolled ? 'var(--border-color)' : 'transparent',
         }}
       >
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
-                        {/* Logo */}
+        <div className="w-full px-8">
+          <div className="flex items-center justify-between h-16 max-w-full">
+            {/* Stylized Logo */}
             <motion.div 
-              whileHover={{ scale: 1.02 }} 
+              whileHover={{ scale: 1.05 }} 
               className="flex items-center"
             >
-              <span 
-                className="text-xl font-medieval font-semibold"
-                style={{ color: 'var(--text-primary)' }}
+              <div 
+                className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-serif tracking-wider"
+                style={{ 
+                  textShadow: '0 0 10px var(--glow-color)',
+                  fontFamily: 'serif'
+                }}
               >
-                Suyash Sreekumar
-              </span>
+                SSK
+              </div>
             </motion.div>
 
             {/* Desktop Menu & Theme Toggle */}
-            <div className="hidden lg:flex items-center gap-8">
-              <div className="flex items-center gap-2">
+            <div className="hidden lg:flex items-center flex-1 justify-center">
+              <div className="flex items-center justify-center flex-1 max-w-4xl gap-1">
                 {navItems.map((item) => (
                   <motion.button
                     key={item.id}
                     onClick={() => scrollToSection(item.href)}
-                    className={`nav-item flex flex-col items-center px-4 py-2 transition-all duration-300 ${
-                      activeSection === item.id ? 'active' : ''
-                    }`}
-                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="relative flex flex-col items-center px-6 py-3 transition-all duration-300 group"
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span className={`primary-label font-semibold text-base ${
-                      activeSection === item.id ? 'border-b-2' : ''
-                    }`} style={{
-                      color: 'var(--text-primary)',
-                      borderColor: activeSection === item.id ? 'var(--accent-primary)' : 'transparent',
-                      paddingBottom: activeSection === item.id ? '2px' : '0'
+                    {/* Primary Label */}
+                    <span className="font-semibold text-base relative z-10" style={{
+                      color: 'var(--text-primary)'
                     }}>
                       {item.primary}
                     </span>
-                    <span className="secondary-label text-sm italic opacity-90" style={{
-                      color: 'var(--accent-primary)',
-                      marginTop: '4px'
+                    
+                    {/* Secondary Label */}
+                    <span className="text-xs italic opacity-75 mt-1" style={{
+                      color: 'var(--accent-primary)'
                     }}>
                       {item.secondary}
                     </span>
+                    
+                    {/* Active & Hover Underline */}
+                    <motion.div
+                      className="absolute bottom-0 left-1/2 h-0.5 bg-current rounded-full"
+                      style={{
+                        color: 'var(--accent-primary)',
+                        width: activeSection === item.id ? '80%' : '0%',
+                        transform: 'translateX(-50%)'
+                      }}
+                      initial={false}
+                      animate={{
+                        width: activeSection === item.id ? '80%' : '0%'
+                      }}
+                      whileHover={{
+                        width: '60%'
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
                   </motion.button>
                 ))}
               </div>
+            </div>
+            
+            {/* Theme Toggle (Right Side) */}
+            <div className="hidden lg:flex">
               <ThemeToggle />
             </div>
 

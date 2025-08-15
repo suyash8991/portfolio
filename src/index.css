@@ -164,7 +164,7 @@ body {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    line-height: 1.1;
+  line-height: 1.1;
     margin-bottom: clamp(1.5rem, 3vw, 2rem);
   }
 
@@ -436,7 +436,7 @@ body {
 
   .meta-info.highlight {
     color: var(--accent-highlight);
-    font-weight: 500;
+  font-weight: 500;
   }
 
   .meta-info .emoji {
@@ -1011,7 +1011,7 @@ body {
 }
 
 /* ===== DEFAULT THEME (ICE MODE) ===== */
-:root {
+  :root {
   /* Default to ice theme for professional first impression */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fb;
@@ -1038,4 +1038,55 @@ body {
   
   --particle-color: rgba(59, 130, 246, 0.1);
   --particle-glow: rgba(135, 206, 235, 0.2);
+}
+
+/* ===== ENHANCED NAME ANIMATIONS ===== */
+@keyframes gradient-shift {
+  0% { 
+    background-position: 0% 50%; 
+  }
+  50% { 
+    background-position: 100% 50%; 
+  }
+  100% { 
+    background-position: 0% 50%; 
+  }
+}
+
+.sparkle-effect {
+  position: relative;
+  overflow: visible;
+}
+
+.sparkle-effect::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 50px 50px, 30px 30px, 40px 40px, 60px 60px;
+  animation: sparkle-twinkle 1s ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes sparkle-twinkle {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
 }
