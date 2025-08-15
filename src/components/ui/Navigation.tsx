@@ -9,12 +9,13 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
-    { id: 'hero', label: 'The Throne', href: '#hero' },
-    { id: 'about', label: 'The Journey', href: '#about' },
-    { id: 'skills', label: 'The Arsenal', href: '#skills' },
-    { id: 'projects', label: 'Epic Conquests', href: '#projects' },
-    { id: 'experience', label: 'The Path', href: '#experience' },
-    { id: 'contact', label: 'Send Raven', href: '#contact' }
+    { id: 'hero', primary: 'Home', secondary: 'The Throne', href: '#hero' },
+    { id: 'about', primary: 'About', secondary: 'The Journey', href: '#about' },
+    { id: 'education', primary: 'Education', secondary: 'Houses of Learning', href: '#education' },
+    { id: 'skills', primary: 'Skills', secondary: 'The Arsenal', href: '#skills' },
+    { id: 'projects', primary: 'Portfolio', secondary: 'Epic Conquests', href: '#projects' },
+    { id: 'experience', primary: 'Experience', secondary: 'Path of Honor', href: '#experience' },
+    { id: 'contact', primary: 'Contact', secondary: 'Send Raven', href: '#contact' }
   ];
 
   useEffect(() => {
@@ -87,13 +88,27 @@ const Navigation = () => {
                   <motion.button
                     key={item.id}
                     onClick={() => scrollToSection(item.href)}
-                    className={`nav-link font-medium ${
+                    className={`nav-item flex flex-col items-center px-4 py-2 transition-all duration-300 ${
                       activeSection === item.id ? 'active' : ''
                     }`}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {item.label}
+                    <span className={`primary-label font-semibold text-base ${
+                      activeSection === item.id ? 'border-b-2' : ''
+                    }`} style={{
+                      color: 'var(--text-primary)',
+                      borderColor: activeSection === item.id ? 'var(--accent-primary)' : 'transparent',
+                      paddingBottom: activeSection === item.id ? '2px' : '0'
+                    }}>
+                      {item.primary}
+                    </span>
+                    <span className="secondary-label text-sm italic opacity-90" style={{
+                      color: 'var(--accent-primary)',
+                      marginTop: '4px'
+                    }}>
+                      {item.secondary}
+                    </span>
                   </motion.button>
                 ))}
               </div>
@@ -157,7 +172,18 @@ const Navigation = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {item.label}
+                <div className="flex flex-col">
+                  <span className="font-semibold text-base mb-1" style={{
+                    color: activeSection === item.id ? 'var(--accent-primary)' : 'var(--text-primary)'
+                  }}>
+                    {item.primary}
+                  </span>
+                  <span className="text-sm italic opacity-75" style={{
+                    color: 'var(--accent-primary)'
+                  }}>
+                    {item.secondary}
+                  </span>
+                </div>
               </motion.button>
             ))}
           </div>

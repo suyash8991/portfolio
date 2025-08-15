@@ -9,6 +9,7 @@ import LoadingScreen from './components/ui/LoadingScreen';
 import Navigation from './components/ui/Navigation';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
+import Education from './components/sections/Education';
 import Skills from './components/sections/Skills';
 import Projects from './components/sections/Projects';
 import Experience from './components/sections/Experience';
@@ -81,6 +82,11 @@ function App() {
           {/* About Section */}
           <section id="about">
             <About />
+          </section>
+
+          {/* Education Section */}
+          <section id="education">
+            <Education />
           </section>
 
           {/* Skills Section */}
