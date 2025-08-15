@@ -30,7 +30,7 @@ interface Experience {
 
 const Experience = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
 
   const experiences: Experience[] = [
     {
@@ -128,11 +128,7 @@ const Experience = () => {
     hidden: { x: -50, opacity: 0 },
     visible: {
       x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
+      opacity: 1
     }
   };
 
@@ -187,7 +183,7 @@ const Experience = () => {
 
             {/* Experience Items */}
             <div className="space-y-12">
-              {experiences.map((exp, index) => (
+              {experiences.map((exp, _) => (
                 <motion.div
                   key={exp.id}
                   variants={itemVariants}

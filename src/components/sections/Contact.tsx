@@ -24,7 +24,7 @@ interface FormData {
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -60,11 +60,7 @@ const Contact = () => {
     hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
+      opacity: 1
     }
   };
 

@@ -5,7 +5,7 @@ import { GraduationCap, Users, MapPin, Target } from 'lucide-react';
 
 const About = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -22,11 +22,7 @@ const About = () => {
     hidden: { x: -50, opacity: 0 },
     visible: {
       x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
+      opacity: 1
     }
   };
 

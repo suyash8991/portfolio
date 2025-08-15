@@ -36,7 +36,7 @@ interface Project {
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const projects: Project[] = [
@@ -102,11 +102,7 @@ const Projects = () => {
     hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
+      opacity: 1
     }
   };
 

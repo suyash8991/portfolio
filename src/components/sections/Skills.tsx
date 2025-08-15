@@ -25,7 +25,7 @@ interface SkillCategory {
 const Skills = () => {
   const { theme } = useTheme();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true });
 
   const skillCategories: SkillCategory[] = [
     {
@@ -132,7 +132,7 @@ const Skills = () => {
 
           {/* Skills Categories */}
           <div className="grid gap-12">
-            {skillCategories.map((category, categoryIndex) => (
+            {skillCategories.map((category, _) => (
               <motion.div
                 key={category.title}
                 variants={itemVariants}
@@ -158,7 +158,7 @@ const Skills = () => {
                   variants={containerVariants}
                   className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
                 >
-                  {category.skills.map((skill, skillIndex) => (
+                  {category.skills.map((skill, _) => (
                     <motion.div
                       key={skill.name}
                       variants={skillVariants}

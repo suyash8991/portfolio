@@ -7,12 +7,10 @@ const ThemeToggle: React.FC = () => {
 
   const toggleVariants = {
     ice: {
-      x: 0,
-      transition: { type: "spring", stiffness: 700, damping: 30 }
+      x: 0
     },
     fire: {
-      x: 32,
-      transition: { type: "spring", stiffness: 700, damping: 30 }
+      x: 32
     }
   };
 

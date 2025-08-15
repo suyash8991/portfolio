@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
-import { Sword, Shield } from 'lucide-react';
 
 interface LoadingScreenProps {
   isLoading: boolean;
@@ -11,38 +10,20 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
   
   if (!isLoading) return null;
 
-  const swordVariants = {
-    initial: { rotate: -45, opacity: 0 },
-    animate: { 
-      rotate: 0, 
-      opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
-  };
 
-  const shieldVariants = {
-    initial: { rotate: 45, opacity: 0 },
-    animate: { 
-      rotate: 0, 
-      opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut", delay: 0.2 }
-    }
-  };
 
   const textVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { 
       opacity: 1, 
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut", delay: 0.4 }
+      y: 0
     }
   };
 
   const progressVariants = {
     initial: { width: "0%" },
     animate: { 
-      width: "100%",
-      transition: { duration: 2, ease: "easeInOut", delay: 0.6 }
+      width: "100%"
     }
   };
 
