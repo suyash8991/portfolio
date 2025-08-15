@@ -8,8 +8,7 @@ import {
   Award,
   Calendar,
   MapPin,
-  ChevronDown,
-  ExternalLink
+  ChevronDown
 } from 'lucide-react';
 
 interface Experience {
@@ -128,8 +127,7 @@ const Experience = () => {
     visible: {
       scaleX: 1,
       transition: {
-        duration: 2,
-        ease: "easeInOut"
+        duration: 2
       }
     }
   };
@@ -186,7 +184,7 @@ const Experience = () => {
 
             {/* Experience Cards */}
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-              {experiences.map((exp, index) => (
+              {experiences.map((exp, _) => (
                 <motion.div
                   key={exp.id}
                   variants={itemVariants}

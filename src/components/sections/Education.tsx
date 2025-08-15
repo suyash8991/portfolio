@@ -121,8 +121,7 @@ const Education = () => {
     visible: {
       scaleY: 1,
       transition: {
-        duration: 1.5,
-        ease: "easeInOut"
+        duration: 1.5
       }
     }
   };
