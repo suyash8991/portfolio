@@ -33,12 +33,12 @@ const Skills = () => {
       subtitle: "The languages that shape my thoughts",
       icon: <Code2 className="w-6 h-6" />,
       skills: [
-        { name: "Python", icon: "🐍" },
-        { name: "JavaScript", icon: "⚡" },
-        { name: "Java", icon: "☕" },
-        { name: "C/C++", icon: "⚙️" },
-        { name: "SQL", icon: "🗃️" },
-        { name: "Haskell", icon: "λ" }
+        { name: "Python", icon: `${import.meta.env.BASE_URL}logos/python.svg` },
+        { name: "JavaScript", icon: `${import.meta.env.BASE_URL}logos/javascript.svg` },
+        { name: "Java", icon: `${import.meta.env.BASE_URL}logos/java.svg` },
+        { name: "C/C++", icon: `${import.meta.env.BASE_URL}logos/cplusplus.svg` },
+        { name: "SQL", icon: `${import.meta.env.BASE_URL}logos/sql.svg` },
+        { name: "Haskell", icon: `${import.meta.env.BASE_URL}logos/haskell.svg` }
       ]
     },
     {
@@ -46,12 +46,12 @@ const Skills = () => {
       subtitle: "Where artificial minds come to life",
       icon: <Brain className="w-6 h-6" />,
       skills: [
-        { name: "TensorFlow", icon: "🔥" },
-        { name: "PyTorch", icon: "🔦" },
-        { name: "Langchain", icon: "🔗" },
-        { name: "RAGAS", icon: "📊" },
-        { name: "Scikit-learn", icon: "🔬" },
-        { name: "Vector DBs", icon: "🎯" }
+        { name: "TensorFlow", icon: `${import.meta.env.BASE_URL}logos/tensorflow.svg` },
+        { name: "PyTorch", icon: `${import.meta.env.BASE_URL}logos/pytorch.svg` },
+        { name: "LangChain", icon: `${import.meta.env.BASE_URL}logos/langchain.svg` },
+        { name: "RAGAS", icon: `${import.meta.env.BASE_URL}logos/ragas.svg` },
+        { name: "Scikit-learn", icon: `${import.meta.env.BASE_URL}logos/scikit-learn.svg` },
+        { name: "Vector DBs", icon: `${import.meta.env.BASE_URL}logos/vector-databases.svg` }
       ]
     },
     {
@@ -59,12 +59,12 @@ const Skills = () => {
       subtitle: "Instruments that transform chaos into insight",
       icon: <Database className="w-6 h-6" />,
       skills: [
-        { name: "Pandas", icon: "🐼" },
-        { name: "NumPy", icon: "🔢" },
-        { name: "Power BI", icon: "📈" },
-        { name: "Qlik Sense", icon: "📊" },
-        { name: "ETL Pipelines", icon: "🔄" },
-        { name: "Data Visualization", icon: "📉" }
+        { name: "Pandas", icon: `${import.meta.env.BASE_URL}logos/pandas.svg` },
+        { name: "NumPy", icon: `${import.meta.env.BASE_URL}logos/numpy.svg` },
+        { name: "Power BI", icon: `${import.meta.env.BASE_URL}logos/power-bi.svg` },
+        { name: "Qlik Sense", icon: `${import.meta.env.BASE_URL}logos/qlik-sense.svg` },
+        { name: "ETL Pipelines", icon: `${import.meta.env.BASE_URL}logos/etl-pipelines.svg` },
+        { name: "Data Visualization", icon: `${import.meta.env.BASE_URL}logos/data-visualization.svg` }
       ]
     },
     {
@@ -72,13 +72,13 @@ const Skills = () => {
       subtitle: "Masters of the digital sky",
       icon: <Cloud className="w-6 h-6" />,
       skills: [
-        { name: "AWS", icon: "☁️" },
-        { name: "Docker", icon: "🐳" },
-        { name: "Kubernetes", icon: "⚓" },
-        { name: "Jenkins", icon: "🔧" },
-        { name: "Git", icon: "📝" },
-        { name: "PostgreSQL", icon: "🐘" },
-        { name: "MongoDB", icon: "🍃" }
+        { name: "AWS", icon: `${import.meta.env.BASE_URL}logos/aws.svg` },
+        { name: "Docker", icon: `${import.meta.env.BASE_URL}logos/docker.svg` },
+        { name: "Kubernetes", icon: `${import.meta.env.BASE_URL}logos/kubernetes.svg` },
+        { name: "Jenkins", icon: `${import.meta.env.BASE_URL}logos/jenkins.svg` },
+        { name: "Git", icon: `${import.meta.env.BASE_URL}logos/git.svg` },
+        { name: "PostgreSQL", icon: `${import.meta.env.BASE_URL}logos/postgresql.svg` },
+        { name: "MongoDB", icon: `${import.meta.env.BASE_URL}logos/mongodb.svg` }
       ]
     }
   ];
@@ -179,8 +179,26 @@ const Skills = () => {
                         }}
                       >
                         {/* Icon */}
-                        <div className="skill-icon text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                          {skill.icon}
+                        <div className="skill-icon mb-4 group-hover:scale-110 transition-transform duration-300 flex justify-center items-center h-16">
+                          <img 
+                            src={skill.icon} 
+                            alt={`${skill.name} logo`}
+                            className="w-12 h-12 object-contain filter drop-shadow-lg"
+                            style={{
+                              filter: theme === 'ice' 
+                                ? 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2))' 
+                                : 'drop-shadow(0 4px 8px rgba(249, 115, 22, 0.3))'
+                            }}
+                            onError={(e) => {
+                              // Fallback to a generic icon if SVG fails to load
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.parentElement!.innerHTML = `
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                                  ${skill.name.substring(0, 2).toUpperCase()}
+                                </div>
+                              `;
+                            }}
+                          />
                         </div>
                         
                         {/* Skill Name */}

@@ -1,0 +1,24 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="langchainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1C3A57;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5A8A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <title>LangChain</title>
+  <!-- Chain links representing the LangChain concept -->
+  <g fill="url(#langchainGradient)">
+    <!-- First link -->
+    <ellipse cx="6" cy="8" rx="3" ry="2" transform="rotate(-45 6 8)" fill="none" stroke="url(#langchainGradient)" stroke-width="1.5"/>
+    <!-- Second link -->
+    <ellipse cx="12" cy="12" rx="3" ry="2" transform="rotate(45 12 12)" fill="none" stroke="url(#langchainGradient)" stroke-width="1.5"/>
+    <!-- Third link -->
+    <ellipse cx="18" cy="16" rx="3" ry="2" transform="rotate(-45 18 16)" fill="none" stroke="url(#langchainGradient)" stroke-width="1.5"/>
+    <!-- Connection elements -->
+    <circle cx="9" cy="10" r="1.5" fill="url(#langchainGradient)"/>
+    <circle cx="15" cy="14" r="1.5" fill="url(#langchainGradient)"/>
+    <!-- Language symbols -->
+    <text x="6" y="8.5" font-family="monospace" font-size="8" fill="#fff" text-anchor="middle">L</text>
+    <text x="12" y="12.5" font-family="monospace" font-size="8" fill="#fff" text-anchor="middle">C</text>
+  </g>
+</svg>
