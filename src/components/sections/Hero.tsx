@@ -61,9 +61,19 @@ const Hero = () => {
                      : '0 0 0 3px var(--accent-primary), 0 15px 40px rgba(249, 115, 22, 0.3)'
                  }}>
               <img
-                src="/profile.jpg"
+                src={`${import.meta.env.BASE_URL}profile.jpg`}
                 alt="Suyash Sreekumar Professional Photo"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback to a professional placeholder if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.parentElement!.innerHTML = `
+                    <div class="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold">
+                      SS
+                    </div>
+                  `;
+                }}
               />
             </div>
           </motion.div>
