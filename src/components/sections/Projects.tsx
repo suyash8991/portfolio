@@ -135,18 +135,18 @@ const Projects = () => {
           className="max-w-7xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="mb-16">
-            <h2 className="section-title">
-              <span className="section-icon">🏆</span>
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+              <span className="text-4xl mr-3">🏆</span>
               Epic Conquests
             </h2>
-            <div className="section-divider"></div>
-            <p className="section-subtitle">
-              Legendary Achievements in AI & Data Science
+            <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ backgroundColor: 'var(--accent-primary)' }}></div>
+            <p className="text-lg italic mb-4" style={{ color: 'var(--accent-primary)' }}>
+              Legendary achievements in AI & data science
             </p>
-            <p className="text-lg text-text-secondary max-w-3xl mx-auto text-center leading-relaxed">
+            <p className="text-base max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               Innovative projects that demonstrate mastery of artificial intelligence, 
-              machine learning, and enterprise-grade system development
+              machine learning, and enterprise-grade system development in real-world scenarios.
             </p>
           </motion.div>
 
