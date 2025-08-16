@@ -94,41 +94,19 @@ const Navigation = () => {
                   <motion.button
                     key={item.id}
                     onClick={() => scrollToSection(item.href)}
-                    className="relative flex flex-col items-center px-6 py-3 transition-all duration-300 group"
+                    className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     {/* Primary Label */}
-                    <span className="font-semibold text-base relative z-10" style={{
-                      color: 'var(--text-primary)'
-                    }}>
+                    <span className="font-semibold text-base relative z-10">
                       {item.primary}
                     </span>
                     
                     {/* Secondary Label */}
-                    <span className="text-xs italic opacity-75 mt-1" style={{
-                      color: 'var(--accent-primary)'
-                    }}>
+                    <span className="text-xs italic opacity-75 mt-1">
                       {item.secondary}
                     </span>
-                    
-                    {/* Active & Hover Underline */}
-                    <motion.div
-                      className="absolute bottom-0 left-1/2 h-0.5 bg-current rounded-full"
-                      style={{
-                        color: 'var(--accent-primary)',
-                        width: activeSection === item.id ? '80%' : '0%',
-                        transform: 'translateX(-50%)'
-                      }}
-                      initial={false}
-                      animate={{
-                        width: activeSection === item.id ? '80%' : '0%'
-                      }}
-                      whileHover={{
-                        width: '60%'
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
                   </motion.button>
                 ))}
               </div>
