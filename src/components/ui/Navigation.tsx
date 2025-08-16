@@ -68,20 +68,24 @@ const Navigation = () => {
         <div className="w-full px-8">
           <div className="flex items-center justify-between h-16 max-w-full">
             {/* Stylized Logo */}
-            <motion.div 
-              whileHover={{ scale: 1.05 }} 
-              className="flex items-center"
+            <motion.button
+              className="nav-item"
+              onClick={() => setActiveSection('home')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div 
-                className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-serif tracking-wider"
-                style={{ 
-                  textShadow: '0 0 10px var(--glow-color)',
-                  fontFamily: 'serif'
+              <span 
+                className="text-2xl font-bold"
+                style={{
+                  background: `linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
                 }}
               >
                 SSK
-              </div>
-            </motion.div>
+              </span>
+            </motion.button>
 
             {/* Desktop Menu & Theme Toggle */}
             <div className="hidden lg:flex items-center flex-1 justify-center">

@@ -94,7 +94,7 @@ const Contact = () => {
     {
       name: 'Medium',
       icon: `${import.meta.env.BASE_URL}logos/medium-svgrepo-com.svg`,
-      href: 'https://medium.com/@suyash-sreekumar',
+      href: 'https://medium.com/@suyash.sreekumar',
       color: 'hover:opacity-80'
     }
   ];
