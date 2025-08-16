@@ -82,13 +82,13 @@ const Contact = () => {
     {
       name: 'LinkedIn',
       icon: `${import.meta.env.BASE_URL}logos/linkedin-svgrepo-com.svg`,
-      href: 'https://linkedin.com/in/suyash-sreekumar',
+      href: 'https://www.linkedin.com/in/suyashsreekumar',
       color: 'hover:opacity-80'
     },
     {
       name: 'GitHub',
       icon: `${import.meta.env.BASE_URL}logos/github-svgrepo-com.svg`,
-      href: 'https://github.com/suyash-sreekumar',
+      href: 'https://github.com/suyash8991',
       color: 'hover:opacity-80'
     },
     {

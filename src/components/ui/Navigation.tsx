@@ -42,9 +42,17 @@ const Navigation = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Get the section index from href
+    const sectionId = href.replace('#', '');
+    const sections = ['hero', 'skills', 'education', 'projects', 'experience', 'contact'];
+    const sectionIndex = sections.indexOf(sectionId);
+    
+    if (sectionIndex !== -1) {
+      // Find the Swiper instance and slide to the section
+      const swiperContainer = document.querySelector('.vertical-swiper');
+      if (swiperContainer && (swiperContainer as any).swiper) {
+        (swiperContainer as any).swiper.slideTo(sectionIndex);
+      }
     }
     setIsOpen(false);
   };

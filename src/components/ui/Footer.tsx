@@ -22,12 +22,12 @@ const Footer = () => {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      href: 'https://linkedin.com/in/suyash-sreekumar',
+      href: 'https://www.linkedin.com/in/suyashsreekumar',
       icon: <Linkedin className="w-5 h-5" />
     },
-    {
-      name: 'GitHub', 
-      href: 'https://github.com/suyash-sreekumar',
+        {
+      name: 'GitHub',
+      href: 'https://github.com/suyash8991',
       icon: <Github className="w-5 h-5" />
     },
     {

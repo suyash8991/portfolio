@@ -194,7 +194,7 @@ const Education = () => {
 
                   {/* Education Card */}
                   <motion.div
-                    className={`w-full md:w-6/12 ml-20 md:ml-0 ${
+                    className={`w-full md:w-5/12 ml-20 md:ml-0 ${
                       index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
                     }`}
                     whileHover={{ scale: 1.02 }}
@@ -340,6 +340,25 @@ const Education = () => {
               ))}
             </div>
           </div>
+
+          {/* Summary Stats */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-16 grid md:grid-cols-3 gap-6 text-center"
+          >
+            <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)' }}>
+              <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent-primary)' }}>6+</div>
+              <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>Years of Study</div>
+            </div>
+            <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)' }}>
+              <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent-primary)' }}>3.96</div>
+              <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>Current GPA</div>
+            </div>
+            <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)' }}>
+              <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent-primary)' }}>10+</div>
+              <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>Core AI Courses</div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
