@@ -6,7 +6,8 @@ import {
   Code2, 
   Brain, 
   Database, 
-  Cloud
+  Cloud,
+  Layers
 } from 'lucide-react';
 
 interface Skill {
@@ -78,6 +79,19 @@ const Skills = () => {
         { name: "PostgreSQL", icon: `${import.meta.env.BASE_URL}logos/postgresql.svg` },
         { name: "MongoDB", icon: `${import.meta.env.BASE_URL}logos/mongodb.svg` }
       ]
+    },
+    {
+      title: "Development Frameworks",
+      subtitle: "Building the future, one framework at a time",
+      icon: <Layers className="w-6 h-6" />,
+      skills: [
+        { name: "Django", icon: `${import.meta.env.BASE_URL}logos/django-icon-svgrepo-com.svg` },
+        { name: "Node.js", icon: `${import.meta.env.BASE_URL}logos/nodejs-icon-logo-svgrepo-com.svg` },
+        { name: "React", icon: `${import.meta.env.BASE_URL}logos/react.svg` },
+        { name: "Flask", icon: `${import.meta.env.BASE_URL}logos/flask-svgrepo-com.svg` },
+        { name: "FastAPI", icon: `${import.meta.env.BASE_URL}logos/FastAPI.svg` },
+        { name: "Next.js", icon: `${import.meta.env.BASE_URL}logos/nextjs-fill-svgrepo-com.svg` }
+      ]
     }
   ];
 
@@ -110,7 +124,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -128,58 +142,59 @@ const Skills = () => {
             </p>
           </motion.div>
 
-          {/* 4-Quadrant Skills Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Top Left - Languages */}
+          {/* 4-Quadrant Skills Layout - Full Width with Increased Height */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+            {/* Valyrian Tongues (Languages) */}
             <motion.div
               variants={itemVariants}
-              className="quadrant-card"
+              className="quadrant-card w-full"
               style={{
                 background: `linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)`,
                 border: '2px solid var(--border-color)',
-                borderRadius: '24px',
+                borderRadius: '20px',
                 padding: '2rem',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                minHeight: '400px'
               }}
             >
               {/* Quadrant Header */}
               <div className="text-center mb-6">
-                <div className="flex items-center justify-center gap-3 mb-3">
+                <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="quadrant-icon" style={{ color: 'var(--accent-primary)' }}>
                     <Code2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-                    Languages of Power
+                    Valyrian Tongues
                   </h3>
                 </div>
-                <p className="text-sm italic" style={{ color: 'var(--accent-primary)' }}>
+                <p className="text-base italic" style={{ color: 'var(--accent-primary)' }}>
                   The languages that shape my thoughts
                 </p>
               </div>
 
               {/* Skills Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 {skillCategories[0].skills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     variants={skillVariants}
                     whileHover={{ 
                       scale: 1.05,
-                      y: -5,
+                      y: -3,
                       boxShadow: theme === 'ice' 
-                        ? '0 12px 40px rgba(59, 130, 246, 0.3)' 
-                        : '0 12px 40px rgba(249, 115, 22, 0.4)'
+                        ? '0 8px 24px rgba(59, 130, 246, 0.3)' 
+                        : '0 8px 24px rgba(249, 115, 22, 0.4)'
                     }}
                     className="skill-item group cursor-pointer"
                     style={{
                       backgroundColor: 'var(--bg-primary)',
                       border: '1px solid var(--border-color)',
-                      borderRadius: '16px',
+                      borderRadius: '12px',
                       padding: '1rem',
                       transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)'
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
                     }}
                   >
                     <div className="flex flex-col items-center text-center">
@@ -187,23 +202,23 @@ const Skills = () => {
                         <img 
                           src={skill.icon} 
                           alt={`${skill.name} logo`}
-                          className="w-10 h-10 object-contain"
+                          className="w-14 h-14 object-contain"
                           style={{
                             filter: theme === 'ice' 
-                              ? 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3))' 
-                              : 'drop-shadow(0 4px 8px rgba(249, 115, 22, 0.4))'
+                              ? 'drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))' 
+                              : 'drop-shadow(0 2px 4px rgba(249, 115, 22, 0.4))'
                           }}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                             e.currentTarget.parentElement!.innerHTML = `
-                              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                              <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                                 ${skill.name.substring(0, 2).toUpperCase()}
                               </div>
                             `;
                           }}
                         />
                       </div>
-                      <h4 className="font-semibold text-sm transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                      <h4 className="font-semibold text-base transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                         {skill.name}
                       </h4>
                     </div>
@@ -212,56 +227,57 @@ const Skills = () => {
               </div>
             </motion.div>
 
-            {/* Top Right - AI & ML */}
+            {/* Maesters' Wisdom (AI & Data Mastery) */}
             <motion.div
               variants={itemVariants}
-              className="quadrant-card"
+              className="quadrant-card w-full"
               style={{
                 background: `linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)`,
                 border: '2px solid var(--border-color)',
-                borderRadius: '24px',
+                borderRadius: '20px',
                 padding: '2rem',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                minHeight: '400px'
               }}
             >
               {/* Quadrant Header */}
               <div className="text-center mb-6">
-                <div className="flex items-center justify-center gap-3 mb-3">
+                <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="quadrant-icon" style={{ color: 'var(--accent-primary)' }}>
                     <Brain className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-                    AI & ML Mastery
+                    Maesters' Wisdom
                   </h3>
                 </div>
-                <p className="text-sm italic" style={{ color: 'var(--accent-primary)' }}>
-                  Where artificial minds come to life
+                <p className="text-base italic" style={{ color: 'var(--accent-primary)' }}>
+                  Where artificial minds come alive
                 </p>
               </div>
 
               {/* Skills Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 {skillCategories[1].skills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     variants={skillVariants}
                     whileHover={{ 
                       scale: 1.05,
-                      y: -5,
+                      y: -3,
                       boxShadow: theme === 'ice' 
-                        ? '0 12px 40px rgba(59, 130, 246, 0.3)' 
-                        : '0 12px 40px rgba(249, 115, 22, 0.4)'
+                        ? '0 8px 24px rgba(59, 130, 246, 0.3)' 
+                        : '0 8px 24px rgba(249, 115, 22, 0.4)'
                     }}
                     className="skill-item group cursor-pointer"
                     style={{
                       backgroundColor: 'var(--bg-primary)',
                       border: '1px solid var(--border-color)',
-                      borderRadius: '16px',
+                      borderRadius: '12px',
                       padding: '1rem',
                       transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)'
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
                     }}
                   >
                     <div className="flex flex-col items-center text-center">
@@ -269,23 +285,23 @@ const Skills = () => {
                         <img 
                           src={skill.icon} 
                           alt={`${skill.name} logo`}
-                          className="w-10 h-10 object-contain"
+                          className="w-14 h-14 object-contain"
                           style={{
                             filter: theme === 'ice' 
-                              ? 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3))' 
-                              : 'drop-shadow(0 4px 8px rgba(249, 115, 22, 0.4))'
+                              ? 'drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))' 
+                              : 'drop-shadow(0 2px 4px rgba(249, 115, 22, 0.4))'
                           }}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                             e.currentTarget.parentElement!.innerHTML = `
-                              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                              <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                                 ${skill.name.substring(0, 2).toUpperCase()}
                               </div>
                             `;
                           }}
                         />
                       </div>
-                      <h4 className="font-semibold text-sm transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                      <h4 className="font-semibold text-base transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                         {skill.name}
                       </h4>
                     </div>
@@ -294,56 +310,57 @@ const Skills = () => {
               </div>
             </motion.div>
 
-            {/* Bottom Left - Data Forging */}
+            {/* Builders of the Realm (Frameworks & Craft) */}
             <motion.div
               variants={itemVariants}
-              className="quadrant-card"
+              className="quadrant-card w-full"
               style={{
                 background: `linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)`,
                 border: '2px solid var(--border-color)',
-                borderRadius: '24px',
+                borderRadius: '20px',
                 padding: '2rem',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                minHeight: '400px'
               }}
             >
               {/* Quadrant Header */}
               <div className="text-center mb-6">
-                <div className="flex items-center justify-center gap-3 mb-3">
+                <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="quadrant-icon" style={{ color: 'var(--accent-primary)' }}>
-                    <Database className="w-8 h-8" />
+                    <Layers className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-                    Data Forging Tools
+                    Builders of the Realm
                   </h3>
                 </div>
-                <p className="text-sm italic" style={{ color: 'var(--accent-primary)' }}>
-                  Instruments that transform chaos into insight
+                <p className="text-base italic" style={{ color: 'var(--accent-primary)' }}>
+                  Frameworks and tools that construct the kingdom's structures
                 </p>
               </div>
 
               {/* Skills Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {skillCategories[2].skills.map((skill) => (
+              <div className="grid grid-cols-2 gap-6">
+                {skillCategories[4].skills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     variants={skillVariants}
                     whileHover={{ 
                       scale: 1.05,
-                      y: -5,
+                      y: -3,
                       boxShadow: theme === 'ice' 
-                        ? '0 12px 40px rgba(59, 130, 246, 0.3)' 
-                        : '0 12px 40px rgba(249, 115, 22, 0.4)'
+                        ? '0 8px 24px rgba(59, 130, 246, 0.3)' 
+                        : '0 8px 24px rgba(249, 115, 22, 0.4)'
                     }}
                     className="skill-item group cursor-pointer"
                     style={{
                       backgroundColor: 'var(--bg-primary)',
                       border: '1px solid var(--border-color)',
-                      borderRadius: '16px',
+                      borderRadius: '12px',
                       padding: '1rem',
                       transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)'
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
                     }}
                   >
                     <div className="flex flex-col items-center text-center">
@@ -351,23 +368,23 @@ const Skills = () => {
                         <img 
                           src={skill.icon} 
                           alt={`${skill.name} logo`}
-                          className="w-10 h-10 object-contain"
+                          className="w-14 h-14 object-contain"
                           style={{
                             filter: theme === 'ice' 
-                              ? 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3))' 
-                              : 'drop-shadow(0 4px 8px rgba(249, 115, 22, 0.4))'
+                              ? 'drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))' 
+                              : 'drop-shadow(0 2px 4px rgba(249, 115, 22, 0.4))'
                           }}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                             e.currentTarget.parentElement!.innerHTML = `
-                              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                              <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                                 ${skill.name.substring(0, 2).toUpperCase()}
                               </div>
                             `;
                           }}
                         />
                       </div>
-                      <h4 className="font-semibold text-sm transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                      <h4 className="font-semibold text-base transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                         {skill.name}
                       </h4>
                     </div>
@@ -376,56 +393,57 @@ const Skills = () => {
               </div>
             </motion.div>
 
-            {/* Bottom Right - Cloud & Infrastructure */}
+            {/* Guardians of the Wall (Cloud & Infrastructure) */}
             <motion.div
               variants={itemVariants}
-              className="quadrant-card"
+              className="quadrant-card w-full"
               style={{
                 background: `linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)`,
                 border: '2px solid var(--border-color)',
-                borderRadius: '24px',
+                borderRadius: '20px',
                 padding: '2rem',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                minHeight: '400px'
               }}
             >
               {/* Quadrant Header */}
               <div className="text-center mb-6">
-                <div className="flex items-center justify-center gap-3 mb-3">
+                <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="quadrant-icon" style={{ color: 'var(--accent-primary)' }}>
                     <Cloud className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-                    Cloud & Infrastructure
+                    Guardians of the Wall
                   </h3>
                 </div>
-                <p className="text-sm italic" style={{ color: 'var(--accent-primary)' }}>
-                  Masters of the digital sky
+                <p className="text-base italic" style={{ color: 'var(--accent-primary)' }}>
+                  The Night's Watch of deployment, scaling, and protection
                 </p>
               </div>
 
               {/* Skills Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 {skillCategories[3].skills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     variants={skillVariants}
                     whileHover={{ 
                       scale: 1.05,
-                      y: -5,
+                      y: -3,
                       boxShadow: theme === 'ice' 
-                        ? '0 12px 40px rgba(59, 130, 246, 0.3)' 
-                        : '0 12px 40px rgba(249, 115, 22, 0.4)'
+                        ? '0 8px 24px rgba(59, 130, 246, 0.3)' 
+                        : '0 8px 24px rgba(249, 115, 22, 0.4)'
                     }}
                     className="skill-item group cursor-pointer"
                     style={{
                       backgroundColor: 'var(--bg-primary)',
                       border: '1px solid var(--border-color)',
-                      borderRadius: '16px',
+                      borderRadius: '12px',
                       padding: '1rem',
                       transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)'
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
                     }}
                   >
                     <div className="flex flex-col items-center text-center">
@@ -433,23 +451,23 @@ const Skills = () => {
                         <img 
                           src={skill.icon} 
                           alt={`${skill.name} logo`}
-                          className="w-10 h-10 object-contain"
+                          className="w-14 h-14 object-contain"
                           style={{
                             filter: theme === 'ice' 
-                              ? 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3))' 
-                              : 'drop-shadow(0 4px 8px rgba(249, 115, 22, 0.4))'
+                              ? 'drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))' 
+                              : 'drop-shadow(0 2px 4px rgba(249, 115, 22, 0.4))'
                           }}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                             e.currentTarget.parentElement!.innerHTML = `
-                              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                              <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                                 ${skill.name.substring(0, 2).toUpperCase()}
                               </div>
                             `;
                           }}
                         />
                       </div>
-                      <h4 className="font-semibold text-sm transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                      <h4 className="font-semibold text-base transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                         {skill.name}
                       </h4>
                     </div>

@@ -146,13 +146,13 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-20 section-primary">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-7xl mx-auto"
+          className="max-w-[1400px] mx-auto"
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
@@ -183,7 +183,7 @@ const Experience = () => {
             />
 
             {/* Experience Cards */}
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid md:grid-cols-2 gap-12 md:gap-16">
               {experiences.map((exp, _) => (
                 <motion.div
                   key={exp.id}
@@ -214,7 +214,7 @@ const Experience = () => {
                     transition={{ duration: 0.2 }}
                   >
                     <div
-                      className="p-6 rounded-xl border shadow-lg cursor-pointer transition-all duration-300"
+                      className="p-8 rounded-xl border shadow-lg cursor-pointer transition-all duration-300"
                       style={{
                         backgroundColor: 'var(--bg-primary)',
                         borderColor: 'var(--border-color)',
@@ -239,7 +239,7 @@ const Experience = () => {
                             </p>
                           </div>
                         </div>
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium"
+                        <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
                               style={{
                                 backgroundColor: 'var(--accent-primary)20',
                                 color: 'var(--accent-primary)'
