@@ -126,9 +126,6 @@ const Projects = () => {
     "in-progress": { label: "In Progress", color: "bg-blue-500 text-white", glow: "shadow-blue-500/20" },
   };
 
-  const projectGradient = "from-slate-700/20 via-slate-600/20 to-slate-800/20";
-  const projectPattern = "radial-gradient(circle at 20% 80%, rgba(148,163,184,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(148,163,184,0.1) 0%, transparent 50%)";
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -190,7 +187,7 @@ const Projects = () => {
                 layoutId={`project-card-${project.id}`}
                 onClick={() => setSelectedProject(project)}
                 className="relative overflow-hidden cursor-pointer rounded-xl bg-gradient-to-br from-slate-700/20 via-slate-600/20 to-slate-800/20 border border-slate-700/50 backdrop-blur-sm"
-                style={{ backgroundImage: projectPattern }}
+                style={{ backgroundImage: "radial-gradient(circle at 20% 80%, rgba(148,163,184,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(148,163,184,0.1) 0%, transparent 50%)" }}
                 initial="rest"
                 whileHover="hover"
                 animate="rest"
