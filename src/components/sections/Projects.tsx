@@ -279,12 +279,13 @@ const Projects = () => {
               >
                 <motion.div
                   layoutId={`project-card-${selectedProject.id}`}
-                  className="w-full max-w-6xl bg-slate-800/95 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden"
+                  className="w-full max-w-7xl bg-slate-800/95 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
+                  style={{ maxHeight: '95vh' }}
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0" style={{maxHeight: '90vh'}}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full">
                     {/* Left Side - Enhanced Image */}
-                    <div className="relative h-96 lg:h-full overflow-hidden">
+                    <div className="relative h-64 lg:h-auto overflow-hidden">
                       <img
                         src={selectedProject.image}
                         alt={`${selectedProject.title} preview`}
@@ -301,23 +302,23 @@ const Projects = () => {
                     </div>
 
                     {/* Right Side - Detailed Content */}
-                    <div className="p-8 overflow-y-auto">
+                    <div className="p-6 lg:p-8 overflow-y-auto" style={{ maxHeight: 'calc(95vh - 2rem)' }}>
                       <motion.div 
-                        className="space-y-6"
+                        className="space-y-4 lg:space-y-6"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.4 } }}
                         exit={{ opacity: 0, y: 20 }}
                       >
                         {/* Header */}
                         <div className="border-b border-slate-700/50 pb-4">
-                          <h2 className="text-3xl font-bold text-white mb-2 font-serif">
+                          <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2 font-serif">
                             {selectedProject.title}
                           </h2>
-                          <p className="text-lg text-slate-300 font-medium mb-3">
+                          <p className="text-base lg:text-lg text-slate-300 font-medium mb-3">
                             {selectedProject.subtitle}
                           </p>
                           
-                          <div className="flex items-center gap-6 text-slate-400 text-sm">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-slate-400 text-sm">
                             <div className="flex items-center gap-2">
                               <Calendar className="w-4 h-4" />
                               <span>{selectedProject.timeline}</span>
@@ -331,23 +332,23 @@ const Projects = () => {
 
                         {/* Description */}
                         <div className="space-y-3">
-                          <h3 className="text-xl font-semibold text-white">Project Overview</h3>
-                          <p className="text-slate-300 leading-relaxed">
+                          <h3 className="text-lg lg:text-xl font-semibold text-white">Project Overview</h3>
+                          <p className="text-sm lg:text-base text-slate-300 leading-relaxed">
                             {selectedProject.detailedDescription}
                           </p>
                         </div>
 
                         {/* Metrics Grid */}
                         <div className="space-y-3">
-                          <h3 className="text-xl font-semibold text-white">Performance Metrics</h3>
-                          <div className="grid grid-cols-2 gap-3">
+                          <h3 className="text-lg lg:text-xl font-semibold text-white">Performance Metrics</h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {selectedProject.metrics.map((metric, idx) => (
                               <div key={idx} className="bg-slate-700/60 rounded-lg p-3 border border-slate-600/50">
                                 <div className="flex items-center gap-2 mb-1">
                                   <span className="text-slate-400">{metric.icon}</span>
                                   <span className="text-xs text-slate-400 uppercase tracking-wide font-medium">{metric.label}</span>
                                 </div>
-                                <div className="text-lg font-bold text-white">{metric.value}</div>
+                                <div className="text-base lg:text-lg font-bold text-white">{metric.value}</div>
                               </div>
                             ))}
                           </div>
@@ -355,13 +356,13 @@ const Projects = () => {
 
                         {/* Technical Challenges */}
                         <div className="space-y-3">
-                          <h3 className="text-xl font-semibold text-white flex items-center gap-2">
+                          <h3 className="text-lg lg:text-xl font-semibold text-white flex items-center gap-2">
                             <Lightbulb className="w-5 h-5 text-yellow-400" />
                             Technical Challenges
                           </h3>
                           <ul className="space-y-2">
                             {selectedProject.challenges.map((challenge, idx) => (
-                              <li key={idx} className="text-slate-300 flex items-start gap-2">
+                              <li key={idx} className="text-sm lg:text-base text-slate-300 flex items-start gap-2">
                                 <span className="text-orange-400 mt-1">•</span>
                                 <span>{challenge}</span>
                               </li>
@@ -371,24 +372,24 @@ const Projects = () => {
 
                         {/* Impact & Results */}
                         <div className="space-y-3">
-                          <h3 className="text-xl font-semibold text-white flex items-center gap-2">
+                          <h3 className="text-lg lg:text-xl font-semibold text-white flex items-center gap-2">
                             <Target className="w-5 h-5 text-green-400" />
                             Impact & Results
                           </h3>
-                          <p className="text-slate-300">
+                          <p className="text-sm lg:text-base text-slate-300">
                             {selectedProject.impact}
                           </p>
                         </div>
 
                         {/* Technology Stack */}
                         <div className="space-y-3">
-                          <h3 className="text-xl font-semibold text-white flex items-center gap-2">
+                          <h3 className="text-lg lg:text-xl font-semibold text-white flex items-center gap-2">
                             <Code className="w-5 h-5 text-blue-400" />
                             Technology Stack
                           </h3>
                           <div className="flex flex-wrap gap-2">
                             {selectedProject.technologies.map((tech) => (
-                              <span key={tech} className="px-3 py-1 text-sm rounded-full bg-slate-700/60 text-slate-200 border border-slate-600/50">
+                              <span key={tech} className="px-2 py-1 text-xs lg:text-sm rounded-full bg-slate-700/60 text-slate-200 border border-slate-600/50">
                                 {tech}
                               </span>
                             ))}
@@ -396,15 +397,15 @@ const Projects = () => {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex items-center gap-3 pt-4 border-t border-slate-700/50">
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-slate-700/50">
                           {selectedProject.demoUrl && (
-                            <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--bg-primary)', boxShadow: '0 4px 20px var(--shadow-color)' }}>
+                            <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-4 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--bg-primary)', boxShadow: '0 4px 20px var(--shadow-color)' }}>
                               <span>View Demo</span>
                               <ExternalLink className="w-4 h-4 ml-2" />
                             </a>
                           )}
                           {selectedProject.githubUrl && (
-                            <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105 border border-slate-600 bg-slate-700/60 text-slate-200">
+                            <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-4 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105 border border-slate-600 bg-slate-700/60 text-slate-200">
                               <span>View Code</span>
                               <Github className="w-4 h-4 mr-2" />
                             </a>
