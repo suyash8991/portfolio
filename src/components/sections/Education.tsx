@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { GraduationCap, Award, BookOpen, Calendar, MapPin } from 'lucide-react';
 
 interface Course {
@@ -32,6 +32,7 @@ const Education = () => {
   const timelineRef = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  const [dragonRotationState, setDragonRotationState] = useState(0);
   
   // Scroll progress for dragon animation
   const { scrollYProgress } = useScroll({
@@ -41,7 +42,16 @@ const Education = () => {
   
   // Transform scroll progress to dragon position and rotation
   const dragonY = useTransform(scrollYProgress, [0, 1], ["0%", "75%"]);
-  const dragonRotation = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  
+  // Update dragon rotation state based on scroll progress
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on('change', (latest) => {
+      const rotation = latest * 180; // Convert 0-1 to 0-180 degrees
+      setDragonRotationState(rotation);
+    });
+    
+    return unsubscribe;
+  }, [scrollYProgress]);
   
   // Dynamic line height - grows to reach the end of second education item
   // Need to account for the actual height of the second education card
@@ -199,19 +209,18 @@ const Education = () => {
               className="absolute left-8 md:left-1/2 w-16 h-16 z-20 timeline-dragon dragon-movement"
               style={{
                 top: dragonY,
-                transform: 'translateX(-50%)'
+                transform: `translateX(-50%) rotate(${dragonRotationState}deg)`
               }}
               whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.2 }}
             >
               {/* Use the actual dragon.svg file */}
-              <motion.img
+              <img
                 src={`${import.meta.env.BASE_URL}logos/dragon.svg`}
                 alt="Dragon"
                 className="w-full h-full dragon-svg"
                 style={{ 
-                  filter: 'var(--dragon-filter)',
-                  transform: `rotate(${dragonRotation}deg)` // Dynamic rotation based on scroll
+                  filter: 'var(--dragon-filter)'
                 }}
               />
             </motion.div>
@@ -389,25 +398,6 @@ const Education = () => {
               ))}
             </div>
           </div>
-
-          {/* Summary Stats */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-16 grid md:grid-cols-3 gap-6 text-center"
-          >
-            <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)' }}>
-              <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent-primary)' }}>6+</div>
-              <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>Years of Study</div>
-            </div>
-            <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)' }}>
-              <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent-primary)' }}>3.96</div>
-              <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>Current GPA</div>
-            </div>
-            <div className="p-6 rounded-xl" style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)' }}>
-              <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent-primary)' }}>10+</div>
-              <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>Core AI Courses</div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

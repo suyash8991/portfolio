@@ -1202,7 +1202,7 @@ body {
 
 .dragon-svg:hover {
   filter: var(--dragon-filter-hover);
-  transform: scale(1.1);
+  /* transform removed to prevent conflicts with rotation */
 }
 
 /* Dragon filter variables for theme switching */
@@ -1294,17 +1294,8 @@ body {
   z-index: 30;
 }
 
-/* Dragon breathing effect */
-@keyframes dragonBreath {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
+/* Dragon breathing effect - removed to prevent transform conflicts */
 .dragon-svg {
-  animation: dragonBreath 4s ease-in-out infinite;
+  /* animation removed to prevent transform conflicts with rotation */
 }
 
