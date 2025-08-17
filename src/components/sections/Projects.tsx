@@ -64,6 +64,29 @@ const Projects = () => {
       image: '/api/placeholder/600/400'
     },
     {
+      id: 'parkinsons-prediction',
+      title: 'Parkinson\'s Disease Prediction',
+      subtitle: 'Voice of the Future',
+      description: 'A machine learning project that analyzes vocal biomarkers to predict Parkinson\'s Disease with high accuracy. By leveraging voice characteristics and advanced ML algorithms, this project demonstrates the power of AI in medical diagnostics and early disease detection.',
+      features: [
+        'Advanced voice biomarker analysis using 24 features',
+        'Multiple ML model evaluation (Random Forest, Decision Tree, XGBoost)',
+        'Comprehensive model comparison with detailed performance metrics',
+        'Handling class imbalance and feature scaling',
+        'Production-ready classification system'
+      ],
+      technologies: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas', 'NumPy', 'Matplotlib', 'Kaggle Dataset'],
+      metrics: [
+        { label: 'Best Accuracy', value: '92.31%', icon: <Target className="w-4 h-4" /> },
+        { label: 'ROC AUC', value: '0.9345', icon: <Award className="w-4 h-4" /> },
+        { label: 'Features Analyzed', value: '24', icon: <Eye className="w-4 h-4" /> },
+        { label: 'Dataset Size', value: '195 samples', icon: <TrendingUp className="w-4 h-4" /> }
+      ],
+      timeline: 'Mar 2025 – May 2025',
+      status: 'completed',
+      image: '/api/placeholder/600/400'
+    },
+    {
       id: 'income-prediction',
       title: 'Adult Income Prediction',
       subtitle: 'Predicting the Realm\'s Prosperity',
