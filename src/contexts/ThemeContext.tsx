@@ -15,7 +15,7 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('ice'); // Default to Ice theme
+  const [theme, setTheme] = useState<Theme>('fire'); // Default to Fire theme
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Load theme from localStorage on mount

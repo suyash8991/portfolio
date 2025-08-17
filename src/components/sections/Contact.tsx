@@ -111,7 +111,11 @@ const Contact = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="mb-16">
             <h2 className="section-title">
-              <span className="section-icon">🐦</span>
+              <img 
+                src={`${import.meta.env.BASE_URL}logos/raven.svg`}
+                alt="Raven"
+                className="section-icon w-8 h-8"
+              />
               Send a Raven
             </h2>
             <div className="section-divider"></div>
