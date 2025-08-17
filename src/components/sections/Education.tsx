@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { GraduationCap, Award, BookOpen, Calendar, MapPin } from 'lucide-react';
@@ -29,8 +29,23 @@ interface EducationItem {
 
 const Education = () => {
   const ref = useRef(null);
+  const timelineRef = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  
+  // Scroll progress for dragon animation
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"] // Better offset for smoother animation
+  });
+  
+  // Transform scroll progress to dragon position and rotation
+  const dragonY = useTransform(scrollYProgress, [0, 1], ["0%", "75%"]);
+  const dragonRotation = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  
+  // Dynamic line height - grows to reach the end of second education item
+  // Need to account for the actual height of the second education card
+  const dynamicLineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "75%"]); // Extended to reach second card end
 
   const educationData: EducationItem[] = [
     {
@@ -157,15 +172,49 @@ const Education = () => {
           </motion.div>
 
           {/* Timeline Container */}
-          <div className="relative">
+          <div className="relative" ref={timelineRef}>
             {/* Timeline Line */}
             <motion.div
               variants={timelineVariants}
-              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 origin-top transform md:-translate-x-1/2 rounded-full"
+              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 origin-top transform md:-translate-x-1/2 rounded-full timeline-line-with-dragon"
               style={{
                 background: `linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary))`
               }}
             />
+
+            {/* Dynamic Dragon Trail Line - grows from first dot to second dot */}
+            <motion.div
+              className="absolute left-8 md:left-1/2 w-1 transform md:-translate-x-1/2 z-10 dragon-trail-line"
+              style={{
+                top: '0%',
+                height: dynamicLineHeight,
+                background: 'var(--accent-primary)',
+                boxShadow: '0 0 8px var(--accent-primary)',
+                borderRadius: '1px'
+              }}
+            />
+
+            {/* Animated Dragon - Flying Down */}
+            <motion.div
+              className="absolute left-8 md:left-1/2 w-16 h-16 z-20 timeline-dragon dragon-movement"
+              style={{
+                top: dragonY,
+                transform: 'translateX(-50%)'
+              }}
+              whileHover={{ scale: 1.2 }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* Use the actual dragon.svg file */}
+              <motion.img
+                src={`${import.meta.env.BASE_URL}logos/dragon.svg`}
+                alt="Dragon"
+                className="w-full h-full dragon-svg"
+                style={{ 
+                  filter: 'var(--dragon-filter)',
+                  transform: `rotate(${dragonRotation}deg)` // Dynamic rotation based on scroll
+                }}
+              />
+            </motion.div>
 
             {/* Timeline Items */}
             <div className="space-y-12">

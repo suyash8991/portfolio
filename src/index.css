@@ -1186,3 +1186,125 @@ body {
   }
 }
 
+/* ===== ANIMATED DRAGON TIMELINE ===== */
+.dragon-timeline {
+  position: relative;
+  overflow: hidden;
+}
+
+.dragon-svg {
+  filter: var(--dragon-filter);
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dragon-svg:hover {
+  filter: var(--dragon-filter-hover);
+  transform: scale(1.1);
+}
+
+/* Dragon filter variables for theme switching */
+:root {
+  --dragon-filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(0.8) saturate(1.2);
+  --dragon-filter-hover: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) brightness(1) saturate(1.5);
+}
+
+[data-theme="fire"] {
+  --dragon-filter: drop-shadow(0 4px 8px rgba(255, 69, 0, 0.4)) brightness(1.2) saturate(1.5) hue-rotate(0deg);
+  --dragon-filter-hover: drop-shadow(0 6px 12px rgba(255, 69, 0, 0.6)) brightness(1.4) saturate(1.8) hue-rotate(5deg);
+}
+
+[data-theme="ice"] {
+  --dragon-filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3)) brightness(0.9) saturate(0.8) hue-rotate(180deg);
+  --dragon-filter-hover: drop-shadow(0 6px 12px rgba(59, 130, 246, 0.5)) brightness(1.1) saturate(1) hue-rotate(180deg);
+}
+
+/* Timeline dragon positioning and movement */
+.timeline-dragon {
+  position: absolute;
+  pointer-events: none; /* Allow clicking through the dragon */
+  transition: top 0.1s ease-out; /* Smooth movement */
+}
+
+.timeline-dragon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, var(--accent-primary)20, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-dragon:hover::before {
+  opacity: 1;
+}
+
+/* Dragon Trail Line - follows the dragon */
+.dragon-trail-line {
+  position: absolute;
+  background: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-primary);
+  border-radius: 1px;
+  transition: top 0.1s ease-out;
+  opacity: 0.8;
+}
+
+/* Enhanced timeline line with dragon trail */
+.timeline-line-with-dragon {
+  position: relative;
+}
+
+.timeline-line-with-dragon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-primary),
+    var(--accent-secondary) 30%,
+    var(--accent-primary) 60%,
+    var(--accent-secondary)
+  );
+  transform: translateX(-50%);
+  opacity: 0.8;
+  animation: dragonTrail 3s ease-in-out infinite;
+}
+
+@keyframes dragonTrail {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Ensure dragon is above timeline line */
+.timeline-dragon {
+  z-index: 30;
+}
+
+/* Dragon breathing effect */
+@keyframes dragonBreath {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.dragon-svg {
+  animation: dragonBreath 4s ease-in-out infinite;
+}
+
