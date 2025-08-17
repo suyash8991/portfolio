@@ -26,7 +26,6 @@ interface Project {
   detailedDescription: string;
   status: "active" | "completed" | "in-progress";
   timeline: string;
-  category: "ai" | "data" | "fullstack";
   technologies: string[];
   metrics: ProjectMetric[];
   challenges: string[];
@@ -52,7 +51,6 @@ const Projects = () => {
       detailedDescription: "Advanced RAG-based chatbot leveraging LangChain and vector embeddings to provide precise, contextual responses from a comprehensive research database. Implements semantic search with real-time document processing and enterprise-grade reliability.",
       status: "active",
       timeline: "Oct 2024 – Jun 2025",
-      category: "ai",
       technologies: ["Python", "FAISS", "ChromaDB", "FlashRank", "GCP", "Langchain", "Vector Embeddings"],
       metrics: [
         { label: "Response Time", value: "<2s", icon: <Zap className="w-4 h-4" /> },
@@ -66,7 +64,8 @@ const Projects = () => {
         "Ensuring 100% context precision across diverse content types"
       ],
       impact: "Reduced research time by 60% for graduate students and improved research accuracy through precise context retrieval",
-      image: `${import.meta.env.BASE_URL}projects/osu chatbot.png`
+      image: `${import.meta.env.BASE_URL}projects/osu chatbot.png`,
+      githubUrl: "https://github.com/suyash8991/osu-research-chatbot"
     },
     {
       id: "parkinsons-prediction",
@@ -76,7 +75,6 @@ const Projects = () => {
       detailedDescription: "Comprehensive machine learning pipeline utilizing ensemble methods and feature engineering to analyze vocal biomarkers for early Parkinson's detection. Implements cross-validation and hyperparameter optimization for maximum predictive power.",
       status: "completed",
       timeline: "Mar 2025 – May 2025",
-      category: "ai",
       technologies: ["Python", "Scikit-learn", "XGBoost", "Pandas", "NumPy", "Matplotlib", "Kaggle Dataset"],
       metrics: [
         { label: "Best Accuracy", value: "92.31%", icon: <Brain className="w-4 h-4" /> },
@@ -90,7 +88,8 @@ const Projects = () => {
         "Model selection and hyperparameter optimization"
       ],
       impact: "Demonstrated potential for early disease detection and achieved state-of-the-art accuracy in voice-based diagnosis",
-      image: `${import.meta.env.BASE_URL}projects/parkinson.png`
+      image: `${import.meta.env.BASE_URL}projects/parkinson.png`,
+      githubUrl: "https://github.com/suyash8991/parkinsons-prediction"
     },
     {
       id: "income-prediction",
@@ -100,7 +99,6 @@ const Projects = () => {
       detailedDescription: "Advanced machine learning pipeline implementing Random Forest classifiers with sophisticated feature engineering and minority class optimization. Features comprehensive statistical analysis and production-ready model deployment.",
       status: "completed",
       timeline: "Jan 2024 – Mar 2024",
-      category: "data",
       technologies: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "UCI Census Data"],
       metrics: [
         { label: "Accuracy", value: "86%", icon: <Target className="w-4 h-4" /> },
@@ -114,7 +112,8 @@ const Projects = () => {
         "Optimizing model performance for minority classes"
       ],
       impact: "Improved prediction accuracy by 9% and enhanced understanding of income determinants through advanced ML techniques",
-      image: `${import.meta.env.BASE_URL}projects/adult_income.png`
+      image: `${import.meta.env.BASE_URL}projects/adult_income.png`,
+      githubUrl: "https://github.com/suyash8991/income-prediction"
     }
   ];
 
@@ -124,17 +123,9 @@ const Projects = () => {
     "in-progress": { label: "In Progress", color: "bg-blue-500 text-white", glow: "shadow-blue-500/20" },
   };
 
-  const categoryGradients = {
-    ai: "from-orange-600/20 via-red-600/20 to-orange-800/20",
-    data: "from-blue-600/20 via-cyan-600/20 to-blue-800/20",
-    fullstack: "from-purple-600/20 via-indigo-600/20 to-purple-800/20",
-  };
-
-  const categoryPatterns = {
-    ai: "radial-gradient(circle at 20% 80%, rgba(255,165,0,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,69,0,0.1) 0%, transparent 50%)",
-    data: "linear-gradient(45deg, rgba(59,130,246,0.05) 25%, transparent 25%), linear-gradient(-45deg, rgba(59,130,246,0.05) 25%, transparent 25%)",
-    fullstack: "conic-gradient(from 0deg at 50% 50%, rgba(147,51,234,0.1) 0deg, transparent 60deg, rgba(147,51,234,0.1) 120deg, transparent 180deg)",
-  };
+  // Unified gradient and pattern for all projects
+  const projectGradient = "from-slate-700/20 via-slate-600/20 to-slate-800/20";
+  const projectPattern = "radial-gradient(circle at 20% 80%, rgba(148,163,184,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(148,163,184,0.1) 0%, transparent 50%)";
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -230,14 +221,14 @@ const Projects = () => {
                   }}
                   className={`
                     relative overflow-hidden cursor-pointer transition-all duration-500 ease-out rounded-xl
-                    bg-gradient-to-br ${categoryGradients[project.category]}
+                    bg-gradient-to-br ${projectGradient}
                     border border-slate-700/50 backdrop-blur-sm
                     ${isHovered ? "shadow-2xl shadow-slate-900/50" : "shadow-lg shadow-slate-900/25"}
                     ${isExpanded ? "md:col-span-3 max-w-5xl mx-auto" : ""}
                     hover:border-slate-600/70
                   `}
                   style={{
-                    backgroundImage: categoryPatterns[project.category],
+                    backgroundImage: projectPattern,
                     animationDelay: `${index * 150}ms`,
                   }}
                   onMouseMove={(e) => handleMouseMove(e, project.id)}
@@ -253,9 +244,10 @@ const Projects = () => {
                       src={project.image}
                       alt={`${project.title} preview`}
                       className={`
-                        w-full h-full object-cover transition-all duration-500
+                        w-full h-full object-contain transition-all duration-500
                         ${isHovered ? "scale-110" : "scale-100"}
                       `}
+                      style={{ objectPosition: 'center' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
                   </div>
@@ -280,7 +272,7 @@ const Projects = () => {
                       <div className="flex items-center gap-4 mt-3 text-sm text-slate-400">
                         <span>{project.timeline}</span>
                         <span>•</span>
-                        <span className="capitalize">{project.category}</span>
+                        <span className="capitalize">Project</span>
                       </div>
                     </div>
 
@@ -341,6 +333,42 @@ const Projects = () => {
                         <div>
                           <h4 className="text-lg font-semibold text-white mb-3">Impact & Results</h4>
                           <p className="text-slate-300">{project.impact}</p>
+                        </div>
+
+                        {/* Links */}
+                        <div className="flex items-center gap-4">
+                          {project.demoUrl && (
+                            <a
+                              href={project.demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-6 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                              style={{
+                                backgroundColor: 'var(--accent-primary)',
+                                color: 'var(--bg-primary)',
+                                boxShadow: '0 4px 20px var(--shadow-color)'
+                              }}
+                            >
+                              <span>View Demo</span>
+                              <ExternalLink className="w-5 h-5 ml-2" />
+                            </a>
+                          )}
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-6 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                              style={{
+                                backgroundColor: 'var(--accent-secondary)',
+                                color: 'var(--bg-primary)',
+                                boxShadow: '0 4px 20px var(--shadow-color)'
+                              }}
+                            >
+                              <span>View Code</span>
+                              <ExternalLink className="w-5 h-5 ml-2" />
+                            </a>
+                          )}
                         </div>
                       </div>
                     )}
