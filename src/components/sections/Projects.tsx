@@ -1,5 +1,5 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState, type MouseEvent } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { 
   ExternalLink, 
   Zap, 
@@ -9,7 +9,12 @@ import {
   Brain,
   Database,
   MessageSquare,
-  Activity
+  Activity,
+  Github,
+  Calendar,
+  Code,
+  Lightbulb,
+  Expand // Icon for the hover hint
 } from 'lucide-react';
 
 interface ProjectMetric {
@@ -38,9 +43,7 @@ interface Project {
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [expandedCard, setExpandedCard] = useState<string | null>(null);
-  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const projects: Project[] = [
     {
@@ -64,7 +67,7 @@ const Projects = () => {
         "Ensuring 100% context precision across diverse content types"
       ],
       impact: "Reduced research time by 60% for graduate students and improved research accuracy through precise context retrieval",
-      image: `${import.meta.env.BASE_URL}projects/osu chatbot.png`,
+      image: `projects/osu chatbot.png`,
       githubUrl: "https://github.com/suyash8991/osu-research-chatbot"
     },
     {
@@ -88,7 +91,7 @@ const Projects = () => {
         "Model selection and hyperparameter optimization"
       ],
       impact: "Demonstrated potential for early disease detection and achieved state-of-the-art accuracy in voice-based diagnosis",
-      image: `${import.meta.env.BASE_URL}projects/parkinson.png`,
+      image: `projects/parkinson.png`,
       githubUrl: "https://github.com/suyash8991/parkinsons-prediction"
     },
     {
@@ -112,7 +115,7 @@ const Projects = () => {
         "Optimizing model performance for minority classes"
       ],
       impact: "Improved prediction accuracy by 9% and enhanced understanding of income determinants through advanced ML techniques",
-      image: `${import.meta.env.BASE_URL}projects/adult_income.png`,
+      image: `projects/adult_income.png`,
       githubUrl: "https://github.com/suyash8991/income-prediction"
     }
   ];
@@ -123,7 +126,6 @@ const Projects = () => {
     "in-progress": { label: "In Progress", color: "bg-blue-500 text-white", glow: "shadow-blue-500/20" },
   };
 
-  // Unified gradient and pattern for all projects
   const projectGradient = "from-slate-700/20 via-slate-600/20 to-slate-800/20";
   const projectPattern = "radial-gradient(circle at 20% 80%, rgba(148,163,184,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(148,163,184,0.1) 0%, transparent 50%)";
 
@@ -149,34 +151,6 @@ const Projects = () => {
         ease: "easeOut" as const
       }
     }
-  };
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>, projectId: string) => {
-    const card = cardRefs.current[projectId];
-    if (!card) return;
-
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
-  };
-
-  const handleMouseLeave = (projectId: string) => {
-    const card = cardRefs.current[projectId];
-    if (!card) return;
-
-    card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
-    setHoveredCard(null);
-  };
-
-  const toggleExpanded = (projectId: string) => {
-    setExpandedCard(expandedCard === projectId ? null : projectId);
   };
 
   return (
@@ -206,196 +180,246 @@ const Projects = () => {
           </motion.div>
 
           {/* Interactive Project Cards */}
-          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {projects.map((project, index) => {
-              const isExpanded = expandedCard === project.id;
-              const isHovered = hoveredCard === project.id;
-              const status = statusConfig[project.status];
+          <motion.div 
+            variants={itemVariants} 
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+          >
+            {projects.map((project) => (
+              <motion.div
+                key={project.id}
+                layoutId={`project-card-${project.id}`}
+                onClick={() => setSelectedProject(project)}
+                className="relative overflow-hidden cursor-pointer rounded-xl bg-gradient-to-br from-slate-700/20 via-slate-600/20 to-slate-800/20 border border-slate-700/50 backdrop-blur-sm"
+                style={{ backgroundImage: projectPattern }}
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
+              >
+                {/* Background overlay for readability */}
+                <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[1px]" />
 
-              return (
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    className="w-full h-full object-contain"
+                    style={{ objectPosition: 'center' }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+                </div>
+
+                {/* Status badge */}
+                <div className={`absolute top-4 right-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${statusConfig[project.status].color} ${statusConfig[project.status].glow} shadow-lg`}>
+                  {statusConfig[project.status].label}
+                </div>
+
+                <div className="relative z-10 p-6">
+                  {/* Header */}
+                  <div className="mb-6">
+                    <h3 className="font-bold text-white mb-2 font-serif text-2xl">
+                      {project.title}
+                    </h3>
+                    <p className="text-slate-300 font-medium">{project.subtitle}</p>
+                    <div className="flex items-center gap-4 mt-3 text-sm text-slate-400">
+                      <span>{project.timeline}</span>
+                      <span>•</span>
+                      <span className="capitalize">Project</span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-slate-200 mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Metrics Grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    {project.metrics.map((metric, idx) => (
+                      <div key={idx} className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-slate-400">{metric.icon}</span>
+                          <span className="text-xs text-slate-400 uppercase tracking-wide">{metric.label}</span>
+                        </div>
+                        <div className="text-xl font-bold text-white">{metric.value}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Technology badges */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="px-3 py-1 text-xs rounded-full bg-slate-700/50 text-slate-200 border border-slate-600/50 hover:bg-slate-600/50 transition-colors">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Overlay for click hint */}
                 <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  ref={(el) => {
-                    cardRefs.current[project.id] = el;
+                  className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-2 bg-slate-900/70"
+                  variants={{
+                    rest: { opacity: 0 },
+                    hover: { opacity: 1 }
                   }}
-                  className={`
-                    relative overflow-hidden cursor-pointer transition-all duration-500 ease-out rounded-xl
-                    bg-gradient-to-br ${projectGradient}
-                    border border-slate-700/50 backdrop-blur-sm
-                    ${isHovered ? "shadow-2xl shadow-slate-900/50" : "shadow-lg shadow-slate-900/25"}
-                    ${isExpanded ? "md:col-span-3 max-w-5xl mx-auto" : ""}
-                    hover:border-slate-600/70
-                  `}
-                  style={{
-                    backgroundImage: projectPattern,
-                    animationDelay: `${index * 150}ms`,
-                  }}
-                  onMouseMove={(e) => handleMouseMove(e, project.id)}
-                  onMouseEnter={() => setHoveredCard(project.id)}
-                  onMouseLeave={() => handleMouseLeave(project.id)}
-                  onClick={() => toggleExpanded(project.id)}
+                  transition={{ duration: 0.3 }}
                 >
-                  {/* Background overlay for readability */}
-                  <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[1px]" />
+                  <Expand className="w-8 h-8 text-white" />
+                  <p className="font-semibold text-white">Click for Details</p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
 
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={`${project.title} preview`}
-                      className={`
-                        w-full h-full object-contain transition-all duration-500
-                        ${isHovered ? "scale-110" : "scale-100"}
-                      `}
-                      style={{ objectPosition: 'center' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
-                  </div>
-
-                  {/* Status badge */}
-                  <div
-                    className={`
-                    absolute top-4 right-4 z-10 px-3 py-1 rounded-full text-xs font-semibold
-                    ${status.color} ${status.glow} shadow-lg
-                    transition-all duration-300
-                    ${isHovered ? "scale-110" : ""}
-                  `}
-                  >
-                    {status.label}
-                  </div>
-
-                  <div className="relative z-10 p-6">
-                    {/* Header */}
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-white mb-2 font-serif">{project.title}</h3>
-                      <p className="text-slate-300 font-medium">{project.subtitle}</p>
-                      <div className="flex items-center gap-4 mt-3 text-sm text-slate-400">
-                        <span>{project.timeline}</span>
-                        <span>•</span>
-                        <span className="capitalize">Project</span>
+          <AnimatePresence>
+            {selectedProject && (
+              <motion.div
+                className="fixed inset-0 bg-slate-900/80 z-40 flex items-center justify-center p-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedProject(null)}
+              >
+                <motion.div
+                  layoutId={`project-card-${selectedProject.id}`}
+                  className="w-full max-w-6xl bg-slate-800/95 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0" style={{maxHeight: '90vh'}}>
+                    {/* Left Side - Enhanced Image */}
+                    <div className="relative h-96 lg:h-full overflow-hidden">
+                      <img
+                        src={selectedProject.image}
+                        alt={`${selectedProject.title} preview`}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+                      
+                      {/* Status Badge */}
+                      <div className="absolute top-4 right-4">
+                        <div className={`px-4 py-2 rounded-full text-sm font-semibold ${statusConfig[selectedProject.status].color} ${statusConfig[selectedProject.status].glow}`}>
+                          {statusConfig[selectedProject.status].label}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-slate-200 mb-6 leading-relaxed">
-                      {isExpanded ? project.detailedDescription : project.description}
-                    </p>
-
-                    {/* Metrics Grid */}
-                    <div className="grid grid-cols-2 gap-3 mb-6">
-                      {project.metrics.map((metric, idx) => (
-                        <div
-                          key={idx}
-                          className={`
-                            bg-slate-800/50 rounded-lg p-3 border border-slate-700/50
-                            transition-all duration-300
-                            ${isHovered ? "bg-slate-800/70 border-slate-600/70" : ""}
-                          `}
-                        >
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-slate-400">{metric.icon}</span>
-                            <span className="text-xs text-slate-400 uppercase tracking-wide">{metric.label}</span>
+                    {/* Right Side - Detailed Content */}
+                    <div className="p-8 overflow-y-auto">
+                      <motion.div 
+                        className="space-y-6"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.4 } }}
+                        exit={{ opacity: 0, y: 20 }}
+                      >
+                        {/* Header */}
+                        <div className="border-b border-slate-700/50 pb-4">
+                          <h2 className="text-3xl font-bold text-white mb-2 font-serif">
+                            {selectedProject.title}
+                          </h2>
+                          <p className="text-lg text-slate-300 font-medium mb-3">
+                            {selectedProject.subtitle}
+                          </p>
+                          
+                          <div className="flex items-center gap-6 text-slate-400 text-sm">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-4 h-4" />
+                              <span>{selectedProject.timeline}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Code className="w-4 h-4" />
+                              <span>{selectedProject.technologies.length} Technologies</span>
+                            </div>
                           </div>
-                          <div className="text-xl font-bold text-white">{metric.value}</div>
                         </div>
-                      ))}
-                    </div>
 
-                    {/* Technology badges */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs rounded-full bg-slate-700/50 text-slate-200 border border-slate-600/50 hover:bg-slate-600/50 transition-colors"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                        {/* Description */}
+                        <div className="space-y-3">
+                          <h3 className="text-xl font-semibold text-white">Project Overview</h3>
+                          <p className="text-slate-300 leading-relaxed">
+                            {selectedProject.detailedDescription}
+                          </p>
+                        </div>
 
-                    {/* Expanded content */}
-                    {isExpanded && (
-                      <div className="space-y-6 animate-in slide-in-from-top-4 duration-500">
-                        {/* Challenges */}
-                        <div>
-                          <h4 className="text-lg font-semibold text-white mb-3">Technical Challenges</h4>
+                        {/* Metrics Grid */}
+                        <div className="space-y-3">
+                          <h3 className="text-xl font-semibold text-white">Performance Metrics</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            {selectedProject.metrics.map((metric, idx) => (
+                              <div key={idx} className="bg-slate-700/60 rounded-lg p-3 border border-slate-600/50">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="text-slate-400">{metric.icon}</span>
+                                  <span className="text-xs text-slate-400 uppercase tracking-wide font-medium">{metric.label}</span>
+                                </div>
+                                <div className="text-lg font-bold text-white">{metric.value}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Technical Challenges */}
+                        <div className="space-y-3">
+                          <h3 className="text-xl font-semibold text-white flex items-center gap-2">
+                            <Lightbulb className="w-5 h-5 text-yellow-400" />
+                            Technical Challenges
+                          </h3>
                           <ul className="space-y-2">
-                            {project.challenges.map((challenge, idx) => (
+                            {selectedProject.challenges.map((challenge, idx) => (
                               <li key={idx} className="text-slate-300 flex items-start gap-2">
                                 <span className="text-orange-400 mt-1">•</span>
-                                {challenge}
+                                <span>{challenge}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
 
-                        {/* Impact */}
-                        <div>
-                          <h4 className="text-lg font-semibold text-white mb-3">Impact & Results</h4>
-                          <p className="text-slate-300">{project.impact}</p>
+                        {/* Impact & Results */}
+                        <div className="space-y-3">
+                          <h3 className="text-xl font-semibold text-white flex items-center gap-2">
+                            <Target className="w-5 h-5 text-green-400" />
+                            Impact & Results
+                          </h3>
+                          <p className="text-slate-300">
+                            {selectedProject.impact}
+                          </p>
                         </div>
 
-                        {/* Links */}
-                        <div className="flex items-center gap-4">
-                          {project.demoUrl && (
-                            <a
-                              href={project.demoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center px-6 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105"
-                              style={{
-                                backgroundColor: 'var(--accent-primary)',
-                                color: 'var(--bg-primary)',
-                                boxShadow: '0 4px 20px var(--shadow-color)'
-                              }}
-                            >
+                        {/* Technology Stack */}
+                        <div className="space-y-3">
+                          <h3 className="text-xl font-semibold text-white flex items-center gap-2">
+                            <Code className="w-5 h-5 text-blue-400" />
+                            Technology Stack
+                          </h3>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedProject.technologies.map((tech) => (
+                              <span key={tech} className="px-3 py-1 text-sm rounded-full bg-slate-700/60 text-slate-200 border border-slate-600/50">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex items-center gap-3 pt-4 border-t border-slate-700/50">
+                          {selectedProject.demoUrl && (
+                            <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--bg-primary)', boxShadow: '0 4px 20px var(--shadow-color)' }}>
                               <span>View Demo</span>
-                              <ExternalLink className="w-5 h-5 ml-2" />
+                              <ExternalLink className="w-4 h-4 ml-2" />
                             </a>
                           )}
-                          {project.githubUrl && (
-                            <a
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center px-6 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105"
-                              style={{
-                                backgroundColor: 'var(--accent-secondary)',
-                                color: 'var(--bg-primary)',
-                                boxShadow: '0 4px 20px var(--shadow-color)'
-                              }}
-                            >
+                          {selectedProject.githubUrl && (
+                            <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105 border border-slate-600 bg-slate-700/60 text-slate-200">
                               <span>View Code</span>
-                              <ExternalLink className="w-5 h-5 ml-2" />
+                              <Github className="w-4 h-4 mr-2" />
                             </a>
                           )}
                         </div>
-                      </div>
-                    )}
-
-                    {/* Expand indicator */}
-                    <div className="flex justify-center mt-6">
-                      <div
-                        className={`
-                        w-8 h-1 bg-slate-600 rounded-full transition-all duration-300
-                        ${isExpanded ? "rotate-180 bg-orange-500" : ""}
-                      `}
-                      />
+                      </motion.div>
                     </div>
                   </div>
-
-                  {/* Hover glow effect */}
-                  <div
-                    className={`
-                    absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none
-                    bg-gradient-to-r from-transparent via-white/5 to-transparent
-                    ${isHovered ? "opacity-100" : ""}
-                  `}
-                  />
                 </motion.div>
-              );
-            })}
-          </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Call to Action */}
           <motion.div variants={itemVariants} className="text-center mt-16">
