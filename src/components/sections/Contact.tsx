@@ -3,7 +3,6 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { 
-  Send, 
   MapPin, 
   Mail, 
   ExternalLink,
@@ -324,9 +323,13 @@ const Contact = () => {
                       {isSubmitting ? (
                         <div className="w-5 h-5 border-2 border-night-black border-t-transparent rounded-full animate-spin" />
                       ) : (
-                        <Send className="w-5 h-5" />
+                        <img 
+                          src={`${import.meta.env.BASE_URL}logos/raven.svg`}
+                          alt="Raven"
+                          className="w-5 h-5"
+                        />
                       )}
-                      <span>{isSubmitting ? 'Sending Raven...' : 'Send Message'}</span>
+                      <span>{isSubmitting ? 'Sending Raven...' : 'Send a Raven'}</span>
                     </button>
                   </form>
 

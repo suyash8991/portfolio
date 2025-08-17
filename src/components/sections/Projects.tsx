@@ -120,12 +120,6 @@ const Projects = () => {
     }
   ];
 
-  const statusConfig = {
-    active: { label: "Active Campaign", color: "bg-orange-500 text-white", glow: "shadow-orange-500/20" },
-    completed: { label: "Victory Achieved", color: "bg-yellow-500 text-black", glow: "shadow-yellow-500/20" },
-    "in-progress": { label: "In Progress", color: "bg-blue-500 text-white", glow: "shadow-blue-500/20" },
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -203,11 +197,6 @@ const Projects = () => {
                     style={{ objectPosition: 'center' }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
-                </div>
-
-                {/* Status badge */}
-                <div className={`absolute top-4 right-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${statusConfig[project.status].color} ${statusConfig[project.status].glow} shadow-lg`}>
-                  {statusConfig[project.status].label}
                 </div>
 
                 <div className="relative z-10 p-6">
@@ -292,13 +281,6 @@ const Projects = () => {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
-                      
-                      {/* Status Badge */}
-                      <div className="absolute top-4 right-4">
-                        <div className={`px-4 py-2 rounded-full text-sm font-semibold ${statusConfig[selectedProject.status].color} ${statusConfig[selectedProject.status].glow}`}>
-                          {statusConfig[selectedProject.status].label}
-                        </div>
-                      </div>
                     </div>
 
                     {/* Right Side - Detailed Content */}

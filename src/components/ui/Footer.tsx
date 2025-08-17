@@ -117,8 +117,13 @@ const Footer = () => {
               <li>
                 <a
                   href="mailto:suyash.sreekumar@gmail.com"
-                  className="text-steel-blue hover:text-gold-accent transition-colors"
+                  className="text-steel-blue hover:text-gold-accent transition-colors flex items-center gap-2"
                 >
+                  <img 
+                    src={`${import.meta.env.BASE_URL}logos/raven.svg`}
+                    alt="Raven"
+                    className="w-4 h-4"
+                  />
                   Send a Raven
                 </a>
               </li>

@@ -51,6 +51,11 @@ const Navigation = () => {
     setIsOpen(false);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setActiveSection('home');
+  };
+
   return (
     <>
       {/* Desktop Navigation */}
@@ -71,12 +76,17 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16 max-w-full">
             {/* Stylized Logo */}
             <motion.button
-              className="nav-item"
-              onClick={() => setActiveSection('home')}
+              onClick={scrollToTop}
+              className="flex items-center gap-3 text-xl font-bold transition-transform hover:scale-105"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span 
+              <img 
+                src={`${import.meta.env.BASE_URL}logos/ssk_thumbnail.png`}
+                alt="SSK Logo"
+                className="w-10 h-10 rounded-full"
+              />
+              <span
                 className="text-2xl font-bold"
                 style={{
                   background: `linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%)`,
