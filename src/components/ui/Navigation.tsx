@@ -42,17 +42,11 @@ const Navigation = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    // Get the section index from href
     const sectionId = href.replace('#', '');
-    const sections = ['hero', 'skills', 'education', 'projects', 'experience', 'contact'];
-    const sectionIndex = sections.indexOf(sectionId);
+    const element = document.getElementById(sectionId);
     
-    if (sectionIndex !== -1) {
-      // Find the Swiper instance and slide to the section
-      const swiperContainer = document.querySelector('.vertical-swiper');
-      if (swiperContainer && (swiperContainer as any).swiper) {
-        (swiperContainer as any).swiper.slideTo(sectionIndex);
-      }
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsOpen(false);
   };
@@ -97,7 +91,7 @@ const Navigation = () => {
 
             {/* Desktop Menu & Theme Toggle */}
             <div className="hidden lg:flex items-center flex-1 justify-center">
-              <div className="flex items-center justify-center flex-1 max-w-4xl gap-1">
+              <div className="flex items-center justify-center flex-1 max-w-4xl gap-8">
                 {navItems.map((item) => (
                   <motion.button
                     key={item.id}
@@ -106,15 +100,18 @@ const Navigation = () => {
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {/* Primary Label */}
-                    <span className="font-semibold text-base relative z-10">
-                      {item.primary}
-                    </span>
-                    
-                    {/* Secondary Label */}
-                    <span className="text-xs italic opacity-75 mt-1">
-                      {item.secondary}
-                    </span>
+                    {/* Dual Label Structure - Separate Lines */}
+                    <div className="flex flex-col items-center text-center">
+                      {/* Primary Label */}
+                      <span className="font-semibold text-base leading-tight">
+                        {item.primary}
+                      </span>
+                      
+                      {/* Secondary Label */}
+                      <span className="text-xs italic opacity-75 leading-tight mt-1">
+                        {item.secondary}
+                      </span>
+                    </div>
                   </motion.button>
                 ))}
               </div>
