@@ -41,7 +41,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative section-primary themed-texture">
+    <section className="py-20 min-h-screen flex items-center justify-center relative section-primary themed-texture">
       <div className="container mx-auto px-6 z-10">
         <motion.div
           variants={containerVariants}
@@ -53,7 +53,7 @@ const Hero = () => {
           <div className="h-8 md:h-16"></div>
 
           {/* Profile Photo */}
-          <motion.div variants={itemVariants} className="mb-6">
+          <motion.div variants={itemVariants} className="mb-8">
             <div className="hero-photo mx-auto">
               <img
                 src={`${import.meta.env.BASE_URL}profile.jpg`}
@@ -77,7 +77,7 @@ const Hero = () => {
           <motion.h1
             key={nameAnimationKey}
             variants={itemVariants}
-            className={`text-3xl md:text-4xl lg:text-5xl font-medieval font-bold mb-3 hero-name ${theme}-mode`}
+            className={`text-3xl md:text-4xl lg:text-5xl font-medieval font-bold mb-4 hero-name ${theme}-mode`}
             whileHover={{
               scale: 1.05,
               transition: { duration: 0.3 }
@@ -99,7 +99,7 @@ const Hero = () => {
           {/* Professional Title */}
           <motion.h2
             variants={itemVariants}
-            className="text-lg md:text-xl font-body font-medium mb-4"
+            className="text-lg md:text-xl font-body font-medium mb-6"
             style={{ 
               color: 'var(--accent-primary)'
             }}
@@ -110,7 +110,7 @@ const Hero = () => {
           {/* Professional Description */}
           <motion.p
             variants={itemVariants}
-            className="text-sm md:text-base font-light mb-6 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm md:text-base font-light mb-8 max-w-2xl mx-auto leading-relaxed"
             style={{ 
               color: 'var(--text-secondary)'
             }}
@@ -121,7 +121,7 @@ const Hero = () => {
           {/* Meta Information */}
           <motion.div
             variants={itemVariants}
-            className="mb-6 space-y-1"
+            className="mb-8 space-y-2"
           >
             <div className="flex items-center justify-center gap-2 text-sm md:text-base">
               <span className="text-lg">🎓</span>
@@ -140,7 +140,7 @@ const Hero = () => {
           {/* Professional Links */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center justify-center gap-4 mb-8"
+            className="flex flex-wrap items-center justify-center gap-4 mb-12"
           >
             <a 
               href="https://linkedin.com/in/suyash-sreekumar" 
@@ -228,7 +228,7 @@ const Hero = () => {
           initial={{ y: 0 }}
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 cursor-pointer"
           onClick={scrollToNext}
         >
           <ChevronDown 
