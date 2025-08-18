@@ -29,13 +29,23 @@ const Contact = () => {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      // Simulate form submission (replace with actual submission logic)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Form submitted:', data);
+      // Create mailto link with form data
+      const mailtoLink = `mailto:suyash.sreekumar@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
+        `Name: ${data.name}\nEmail: ${data.email}${data.company ? `\nCompany: ${data.company}` : ''}\n\nMessage:\n${data.message}`
+      )}`;
+      
+      // Open default email client
+      window.open(mailtoLink, '_blank');
+      
+      // Show success message
       setSubmitStatus('success');
       reset();
+      
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
       setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -243,7 +253,7 @@ const Contact = () => {
                       <input
                         {...register('name', { required: 'Name is required' })}
                         type="text"
-                        className="w-full px-4 py-3 bg-iron-grey border border-gold-accent/30 rounded-lg text-stark-white focus:border-gold-accent focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-gold-accent/50 rounded-lg text-stark-white placeholder:text-stark-white/60 focus:border-gold-accent focus:outline-none focus:bg-white/20 transition-all duration-300 shadow-inner"
                         placeholder="Enter your name"
                       />
                       {errors.name && (
@@ -265,7 +275,7 @@ const Contact = () => {
                           }
                         })}
                         type="email"
-                        className="w-full px-4 py-3 bg-iron-grey border border-gold-accent/30 rounded-lg text-stark-white focus:border-gold-accent focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-gold-accent/50 rounded-lg text-stark-white placeholder:text-stark-white/60 focus:border-gold-accent focus:outline-none focus:bg-white/20 transition-all duration-300 shadow-inner"
                         placeholder="your.email@domain.com"
                       />
                       {errors.email && (
@@ -281,7 +291,7 @@ const Contact = () => {
                       <input
                         {...register('company')}
                         type="text"
-                        className="w-full px-4 py-3 bg-iron-grey border border-gold-accent/30 rounded-lg text-stark-white focus:border-gold-accent focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-gold-accent/50 rounded-lg text-stark-white placeholder:text-stark-white/60 focus:border-gold-accent focus:outline-none focus:bg-white/20 transition-all duration-300 shadow-inner"
                         placeholder="Your organization (optional)"
                       />
                     </div>
@@ -294,7 +304,7 @@ const Contact = () => {
                       <input
                         {...register('subject', { required: 'Subject is required' })}
                         type="text"
-                        className="w-full px-4 py-3 bg-iron-grey border border-gold-accent/30 rounded-lg text-stark-white focus:border-gold-accent focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-gold-accent/50 rounded-lg text-stark-white placeholder:text-stark-white/60 focus:border-gold-accent focus:outline-none focus:bg-white/20 transition-all duration-300 shadow-inner"
                         placeholder="What's this about?"
                       />
                       {errors.subject && (
@@ -310,7 +320,7 @@ const Contact = () => {
                       <textarea
                         {...register('message', { required: 'Message is required' })}
                         rows={6}
-                        className="w-full px-4 py-3 bg-iron-grey border border-gold-accent/30 rounded-lg text-stark-white focus:border-gold-accent focus:outline-none transition-colors resize-vertical"
+                        className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-gold-accent/50 rounded-lg text-stark-white placeholder:text-stark-white/60 focus:border-gold-accent focus:outline-none focus:bg-white/20 transition-all duration-300 shadow-inner resize-vertical"
                         placeholder="Tell me about your quest, the challenges you face, or opportunities you'd like to discuss..."
                       />
                       {errors.message && (
@@ -322,7 +332,7 @@ const Contact = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-gold-accent text-night-black font-medieval rounded-lg hover:bg-dragon-red hover:text-stark-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-gold-accent to-yellow-500 text-night-black font-medieval font-semibold rounded-lg shadow-lg hover:shadow-xl hover:from-dragon-red hover:to-red-600 hover:text-stark-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border-2 border-gold-accent hover:border-dragon-red"
                     >
                       {isSubmitting ? (
                         <div className="w-5 h-5 border-2 border-night-black border-t-transparent rounded-full animate-spin" />
@@ -335,6 +345,29 @@ const Contact = () => {
                       )}
                       <span>{isSubmitting ? 'Sending Raven...' : 'Send a Raven'}</span>
                     </button>
+
+                    {/* Status Messages */}
+                    {submitStatus === 'success' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 p-3 bg-green-600/20 border border-green-500/50 rounded-lg flex items-center gap-2 text-green-400"
+                      >
+                        <CheckCircle className="w-5 h-5" />
+                        <span>Raven sent successfully! Check your email client.</span>
+                      </motion.div>
+                    )}
+
+                    {submitStatus === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 p-3 bg-red-600/20 border border-red-500/50 rounded-lg flex items-center gap-2 text-red-400"
+                      >
+                        <AlertCircle className="w-5 h-5" />
+                        <span>Failed to send raven. Please try again or email directly.</span>
+                      </motion.div>
+                    )}
                   </form>
 
                   <div className="mt-6 text-center text-steel-blue text-sm">
