@@ -361,8 +361,8 @@
 
 /* 1. Base styles for all themes (size, shape, etc.) */
 .hero-photo {
-  width: 10rem; /* 160px - mobile first */
-  height: 10rem;
+  width: 8rem; /* 128px - reduced from 10rem */
+  height: 8rem;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -421,30 +421,30 @@
 /* Responsive sizing */
 @media (min-width: 640px) {
   .hero-photo {
-    width: 12rem; /* 192px */
-    height: 12rem;
-  } 
+    width: 10rem; /* 160px - reduced from 12rem */
+    height: 10rem;
+  }
 }
 
 @media (min-width: 768px) {
   .hero-photo {
-    width: 16rem; /* 256px */
-    height: 16rem;
+    width: 14rem; /* 224px - reduced from 16rem */
+    height: 14rem;
     border-width: 8px;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-photo {
-    width: 18rem; /* 288px */
-    height: 18rem;
+    width: 16rem; /* 256px - reduced from 18rem */
+    height: 16rem;
   }
 }
 
 @media (min-width: 1280px) {
   .hero-photo {
-    width: 20rem; /* 320px */
-    height: 20rem;
+    width: 16rem; /* 288px - reduced from 20rem */
+    height: 16rem;
   }
 }
 

@@ -50,10 +50,10 @@ const Hero = () => {
           className="text-center max-w-4xl mx-auto"
         >
           {/* Optimized Spacing from Navbar */}
-          <div className="h-8 md:h-16"></div>
+          <div className="h-12 md:h-18"></div>
 
           {/* Profile Photo */}
-          <motion.div variants={itemVariants} className="mb-8">
+          <motion.div variants={itemVariants} className="mb-4">
             <div className="hero-photo mx-auto">
               <img
                 src={`${import.meta.env.BASE_URL}profile.jpg`}
@@ -77,7 +77,7 @@ const Hero = () => {
           <motion.h1
             key={nameAnimationKey}
             variants={itemVariants}
-            className={`text-3xl md:text-4xl lg:text-5xl font-medieval font-bold mb-4 hero-name ${theme}-mode`}
+            className={`text-3xl md:text-3xl lg:text-4xl font-medieval font-bold mb-1 hero-name ${theme}-mode`}
             whileHover={{
               scale: 1.05,
               transition: { duration: 0.3 }
@@ -99,7 +99,7 @@ const Hero = () => {
           {/* Professional Title */}
           <motion.h2
             variants={itemVariants}
-            className="text-lg md:text-xl font-body font-medium mb-6"
+            className="text-lg md:text-l font-body font-medium mb-6"
             style={{ 
               color: 'var(--accent-primary)'
             }}
@@ -115,13 +115,13 @@ const Hero = () => {
               color: 'var(--text-secondary)'
             }}
           >
-            Crafting next-generation intelligent solutions. Expert in building RAG systems, machine learning pipelines, and enterprise analytics platforms that transform data into actionable insights. Specialized in full-stack development, advanced ML algorithms, and scalable data architectures that drive measurable business impact.
+            Crafting next-generation intelligent solutions. Specialized in full-stack development, advanced ML algorithms, and scalable data architectures that drive measurable business impact.
           </motion.p>
 
           {/* Meta Information */}
           <motion.div
             variants={itemVariants}
-            className="mb-8 space-y-2"
+            className="mb-4 space-y-2"
           >
             <div className="flex items-center justify-center gap-2 text-sm md:text-base">
               <span className="text-lg">🎓</span>
