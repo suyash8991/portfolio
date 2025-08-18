@@ -132,7 +132,7 @@ const Contact = () => {
             <p className="section-subtitle">
               Let's Connect & Create Something Great
             </p>
-            <p className="text-lg text-text-secondary max-w-3xl mx-auto text-center leading-relaxed">
+            <p className="text-lg text-stark-white max-w-3xl mx-auto text-center leading-relaxed">
               Ready to discuss opportunities, collaborations, or the fascinating world of AI? 
               I'm here to connect and explore how we can create something remarkable together.
             </p>
