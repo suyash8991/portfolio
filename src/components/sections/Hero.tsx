@@ -54,12 +54,7 @@ const Hero = () => {
 
           {/* Profile Photo */}
           <motion.div variants={itemVariants} className="mb-6">
-            <div className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 mx-auto rounded-full overflow-hidden border-4 border-white shadow-xl transition-all duration-300 hover:scale-105"
-                 style={{
-                   boxShadow: theme === 'ice' 
-                     ? '0 0 0 3px var(--accent-primary), 0 15px 40px rgba(59, 130, 246, 0.2)'
-                     : '0 0 0 3px var(--accent-primary), 0 15px 40px rgba(249, 115, 22, 0.3)'
-                 }}>
+            <div className="hero-photo mx-auto">
               <img
                 src={`${import.meta.env.BASE_URL}profile.jpg`}
                 alt="Suyash Sreekumar Professional Photo"
@@ -83,21 +78,6 @@ const Hero = () => {
             key={nameAnimationKey}
             variants={itemVariants}
             className={`text-3xl md:text-4xl lg:text-5xl font-medieval font-bold mb-3 hero-name ${theme}-mode`}
-            style={{ 
-              position: 'relative',
-              zIndex: 2,
-              background: theme === 'ice' 
-                ? 'linear-gradient(45deg, #3b82f6, #1e40af, #2563eb)' 
-                : 'linear-gradient(45deg, #f97316, #ea580c, #dc2626)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              backgroundSize: '200% 200%',
-              animation: 'gradient-shift 3s ease-in-out infinite',
-              textShadow: theme === 'ice' 
-                ? '0 0 20px rgba(59, 130, 246, 0.3)'
-                : '0 0 20px rgba(249, 115, 22, 0.3)'
-            }}
             whileHover={{
               scale: 1.05,
               transition: { duration: 0.3 }
@@ -124,7 +104,7 @@ const Hero = () => {
               color: 'var(--accent-primary)'
             }}
           >
-            AI Engineer & Data Scientist
+            Software Engineer & AI Specialist
           </motion.h2>
 
           {/* Professional Description */}
@@ -135,9 +115,7 @@ const Hero = () => {
               color: 'var(--text-secondary)'
             }}
           >
-            Crafting intelligent solutions at the intersection of AI and data science. 
-            Specialized in building RAG systems, machine learning pipelines, and 
-            enterprise analytics platforms that drive real business impact.
+            Crafting next-generation intelligent solutions. Expert in building RAG systems, machine learning pipelines, and enterprise analytics platforms that transform data into actionable insights. Specialized in full-stack development, advanced ML algorithms, and scalable data architectures that drive measurable business impact.
           </motion.p>
 
           {/* Meta Information */}
@@ -217,7 +195,7 @@ const Hero = () => {
             </a>
             
             <a 
-              href="https://medium.com/@suyash-sreekumar" 
+              href="https://medium.com/@suyash.sreekumar" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 text-sm"
@@ -242,7 +220,6 @@ const Hero = () => {
               <span className="font-medium">Medium</span>
             </a>
           </motion.div>
-
 
         </motion.div>
 
