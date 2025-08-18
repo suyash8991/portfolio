@@ -7,24 +7,24 @@
   :root[data-theme="ice"] {
     /* Ice Theme - Winter is Coming */
     --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fb;
-    --bg-tertiary: #f0f4f7;
+    --bg-secondary: #e6eaf1;  
+    --bg-tertiary: #f9f9f9;
     --bg-card: #ffffff;
     
-    --text-primary: #3c7ce2;
+    --text-primary: #1b5bc2;
     --text-secondary: #475569;
     --text-muted: #64748b;
     
-    --accent-primary: #3b82f6;
+    --accent-primary: #0f4190;
     --accent-secondary: #4a90e2;
-    --accent-highlight: #60a5fa;
+    --accent-highlight: #3881db;
     
     --border-color: #e2e8f0;
     --border-accent: #cbd5e1;
     
     --shadow-color: rgba(59, 130, 246, 0.1);
     --shadow-hover: rgba(59, 130, 246, 0.2);
-    --glow-color: rgba(59, 130, 246, 0.3);
+    --glow-color:   rgba(137, 232, 242, 0.945);
     
     --gradient-primary: linear-gradient(135deg, #ffffff 0%, #f0f4f7 100%);
     --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8f9fb 100%);
@@ -44,9 +44,9 @@
     --text-secondary: #e2e8f0;
     --text-muted: #94a3b8;
     
-    --accent-primary: #f97316;
+    --accent-primary: #ee9938;
     --accent-secondary: #dc2626;
-    --accent-highlight: #fbbf24;
+    --accent-highlight: #d13838;
     
     --border-color: #374151;
     --border-accent: #d4af37;
@@ -543,30 +543,42 @@
     
     .hero-name.ice-mode {
       animation: freeze-in 0.5s ease-out; 
-      color: var(--text-primary);
-      text-shadow:  
-          /* A very subtle white highlight to create a sharp edge */
-          0 0 2px rgba(255, 255, 255, 0.5),
-          /* The main blue glow */
-          0 0 12px var(--glow-color),
-          /* A wider, softer ambient glow */
-          0 0 25px var(--particle-glow);
-        }
+    
+      /* 1. Apply the gradient as the background */
+      /* This uses your existing theme colors for a perfect match */
+      background: linear-gradient(to bottom, var(--accent-highlight), var(--accent-primary));
+    
+      /* 2. Clip the background to the shape of the text */
+      -webkit-background-clip: text;
+      background-clip: text;
+    
+      /* 3. Make the text color transparent to reveal the gradient background */
+      color: transparent;
+    
+ 
+    }
     
     
     .hero-name.fire-mode {
-      animation: fire-to-ice 0.5s ease-out;
-      color: var(--accent-highlight);
-      text-shadow: 
-        0 0 10px var(--glow-color),
-        0 0 20px rgba(132, 5, 5, 0.6),
-        0 0 30px rgba(255, 0, 60, 0.4);
-    }
+      animation: ice-to-fire 0.5s ease-out; /* Adjusted animation name for consistency */
     
+      /* 1. Apply the gradient as the background */
+      /* This uses your fire theme's gold and orange for the gradient */
+      background: linear-gradient(to bottom, #d13838, #ee9938);
+    
+      /* 2. Clip the background to the shape of the text */
+      -webkit-background-clip: text;
+      background-clip: text;
+    
+      /* 3. Make the text color transparent to reveal the gradient background */
+      color: transparent;
+    
+
+    }
 
     
     .hero-name.switching-to-ice {
-      animation: fire-to-ice 1.5s ease-out;
+      animation: fire-to-ice 0.5s ease-out;
     }
     
     /* ===== THEME TRANSITION EFFECTS ===== */

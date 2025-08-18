@@ -1,0 +1,14 @@
+warning: in the working copy of 'src/components/sections/Contact.tsx', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src/components/sections/Contact.tsx b/src/components/sections/Contact.tsx[m
+[1mindex c2cd98a..599ba04 100644[m
+[1m--- a/src/components/sections/Contact.tsx[m
+[1m+++ b/src/components/sections/Contact.tsx[m
+[36m@@ -132,7 +132,7 @@[m [mconst Contact = () => {[m
+             <p className="section-subtitle">[m
+               Let's Connect & Create Something Great[m
+             </p>[m
+[31m-            <p className="text-lg text-text-secondary max-w-3xl mx-auto text-center leading-relaxed">[m
+[32m+[m[32m            <p className="text-lg text-stark-white max-w-3xl mx-auto text-center leading-relaxed">[m
+               Ready to discuss opportunities, collaborations, or the fascinating world of AI? [m
+               I'm here to connect and explore how we can create something remarkable together.[m
+             </p>[m
