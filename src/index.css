@@ -1306,8 +1306,8 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: var(--cursor-gradient);
-    border: 2px solid var(--cursor-border);
+    background: #3B82F6;
+    border: 2px solid #60A5FA;
     transition: all 0.2s ease;
   }
 
@@ -1319,73 +1319,20 @@
     width: 350px; /* Increased from 200px */
     height: 350px; /* Increased from 200px */
     border-radius: 50%;
-    background: var(--cursor-light-gradient);
+    background: radial-gradient(circle, #3B82F6 0%, #1D4ED8 80%);
     filter: blur(80px); /* Increased from 40px for a softer edge */
     opacity: 0.2; /* Slightly reduced for a more subtle large glow */
     transition: all 0.3s ease;
   }
 
-  /* Interactive element hover effect */
-  .interactive-hover .custom-cursor-pointer {
-    transform: translate(-50%, -50%) scale(1.5);
-    opacity: 0.5;
-  }
 
-  .interactive-hover .custom-cursor-light {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0.4;
-  }
 
-  /* Theme-specific cursor colors */
-  /* Theme-specific cursor colors */
-  [data-theme="ice"] {
-    /* New colors with better contrast against white */
-    --cursor-gradient: radial-gradient(circle, #A7C7F8 0%, #60A5FA 50%, #3B82F6 100%);
-    --cursor-border: #60A5FA;
-    --cursor-light-gradient: radial-gradient(circle, #3B82F6 0%, #1D4ED8 80%);
-  }
 
-  [data-theme="fire"] {
-    --cursor-gradient: radial-gradient(circle, #FFEDA0 0%, #FEB24C 50%, #F97316 100%);
-    --cursor-border: #FDBA74;
-    --cursor-light-gradient: radial-gradient(circle, #F97316 0%, #DC2626 70%);
-  }
 
-  /* Hide default cursor and show on interactive elements */
-  body {
-    cursor: none;
-  }
+
 
   a, button, [role="button"], input, .quadrant-card {
     cursor: pointer;
   }
 
-/* in index.css */
-/* ===== MOUSE STREAM TRAIL ===== */
-.mouse-stream-particle {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998; /* Below the main cursor */
-  transition: opacity 0.2s;
-}
 
-/* Fire Theme: Blazing Stream */
-.fire-stream-particle {
-  background: var(--accent-highlight);
-  filter: blur(8px); /* Blur blends the particles together */
-  box-shadow: 
-    0 0 10px 5px var(--accent-highlight),
-    0 0 20px 10px var(--accent-primary),
-    0 0 30px 15px var(--accent-secondary);
-}
-
-/* Ice Theme: Ice Stream */
-.ice-stream-particle {
-  background: var(--accent-highlight);
-  filter: blur(6px); /* Blur blends the particles together */
-  box-shadow: 
-    0 0 8px 4px #fff,
-    0 0 15px 8px var(--accent-highlight),
-    0 0 25px 12px var(--accent-primary);
-}
