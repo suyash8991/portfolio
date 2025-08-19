@@ -598,7 +598,6 @@
         radial-gradient(ellipse at 20% 80%, rgba(255, 0, 0, 0.5) 0%, transparent 40%),
         radial-gradient(ellipse at 80% 20%, rgba(255, 165, 0, 0.7) 0%, transparent 60%),
         radial-gradient(ellipse at 60% 60%, rgba(255, 69, 0, 0.4) 0%, transparent 70%);
-      animation: fire-eruption 2s ease-out;
       pointer-events: none;
       border-radius: 50%;
       z-index: -1;
@@ -618,7 +617,6 @@
         radial-gradient(circle at 30% 80%, rgba(255, 165, 0, 0.5) 2px, transparent 3px),
         radial-gradient(circle at 70% 20%, rgba(255, 0, 0, 0.6) 1px, transparent 2px);
       background-size: 30px 30px, 40px 40px, 25px 25px, 35px 35px, 45px 45px;
-      animation: fire-sparks-burst 2s ease-out;
       pointer-events: none;
       border-radius: 50%;
       z-index: 1;
@@ -862,38 +860,6 @@
     }
   }
 
-  @keyframes fire-sparks-burst {
-    0% {
-      opacity: 0;
-      transform: scale(0) rotate(0deg);
-      background-position: 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
-    }
-    20% {
-      opacity: 1;
-      transform: scale(0.5) rotate(45deg);
-      background-position: 40% 40%, 60% 60%, 45% 55%, 55% 45%, 50% 50%;
-    }
-    40% {
-      opacity: 0.9;
-      transform: scale(1) rotate(90deg);
-      background-position: 20% 30%, 80% 70%, 30% 80%, 70% 20%, 60% 40%;
-    }
-    60% {
-      opacity: 0.7;
-      transform: scale(1.5) rotate(180deg);
-      background-position: 10% 20%, 90% 80%, 15% 85%, 85% 15%, 75% 25%;
-    }
-    80% {
-      opacity: 0.4;
-      transform: scale(2) rotate(270deg);
-      background-position: 5% 10%, 95% 90%, 10% 95%, 90% 5%, 80% 20%;
-    }
-    100% {
-      opacity: 0;
-      transform: scale(3) rotate(360deg);
-      background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%, 90% 10%;
-    }
-  }
 
   @keyframes snow-fall {
     0% { transform: translateY(-100%); }
@@ -1393,3 +1359,33 @@
   a, button, [role="button"], input, .quadrant-card {
     cursor: pointer;
   }
+
+/* in index.css */
+/* ===== MOUSE STREAM TRAIL ===== */
+.mouse-stream-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998; /* Below the main cursor */
+  transition: opacity 0.2s;
+}
+
+/* Fire Theme: Blazing Stream */
+.fire-stream-particle {
+  background: var(--accent-highlight);
+  filter: blur(8px); /* Blur blends the particles together */
+  box-shadow: 
+    0 0 10px 5px var(--accent-highlight),
+    0 0 20px 10px var(--accent-primary),
+    0 0 30px 15px var(--accent-secondary);
+}
+
+/* Ice Theme: Ice Stream */
+.ice-stream-particle {
+  background: var(--accent-highlight);
+  filter: blur(6px); /* Blur blends the particles together */
+  box-shadow: 
+    0 0 8px 4px #fff,
+    0 0 15px 8px var(--accent-highlight),
+    0 0 25px 12px var(--accent-primary);
+}
