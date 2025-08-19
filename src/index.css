@@ -1306,8 +1306,8 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: #3B82F6;
-    border: 2px solid #60A5FA;
+    background: var(--accent-primary);
+    border: 2px solid var(--accent-secondary);
     transition: all 0.2s ease;
   }
 
@@ -1319,7 +1319,7 @@
     width: 350px; /* Increased from 200px */
     height: 350px; /* Increased from 200px */
     border-radius: 50%;
-    background: radial-gradient(circle, #3B82F6 0%, #1D4ED8 80%);
+    background: radial-gradient(circle, var(--accent-primary) 0%, var(--accent-secondary) 80%);
     filter: blur(80px); /* Increased from 40px for a softer edge */
     opacity: 0.2; /* Slightly reduced for a more subtle large glow */
     transition: all 0.3s ease;
@@ -1331,8 +1331,85 @@
 
 
 
+  /* Hide default cursor */
+  body {
+    cursor: none;
+  }
+
+  /* Show pointer cursor on interactive elements */
   a, button, [role="button"], input, .quadrant-card {
     cursor: pointer;
+  }
+
+  /* ===== LOADING SCREEN FIRE FLAME ANIMATIONS ===== */
+  .flame {
+    animation-name: flamefly;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    transform-origin: 50% 50% 0;
+  }
+  
+  .flame.one {
+    animation-delay: 1s;
+    animation-duration: 3s;
+  }
+  
+  .flame.two {
+    animation-duration: 5s;
+    animation-delay: 1s;
+  }
+  
+  .flame-main {
+    animation-name: flameWobble;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  
+  .flame-main.one {
+    animation-duration: 4s;
+    animation-delay: 1s;
+  }
+  
+  .flame-main.two {
+    animation-duration: 3s;
+    animation-delay: 2s;
+  }
+  
+  .flame-main.three {
+    animation-duration: 2.1s;
+    animation-delay: 3s;
+  }
+  
+  .flame-main.four {
+    animation-duration: 3.2s;
+    animation-delay: 4s;
+  }
+  
+  .flame-main.five {
+    animation-duration: 2.5s;
+    animation-delay: 5s;
+  }
+  
+  @keyframes flameWobble {
+    50% {
+      transform: scale(1,1.2) translate(0, -30px) rotate(-2deg);
+    }
+  }
+  
+  @keyframes flamefly {
+    0% {
+      transform: translate(0) rotate(180deg);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-20px, -100px) rotate(180deg);
+      opacity: 0;
+    }
   }
 
 
