@@ -14,7 +14,8 @@ import Projects from './components/sections/Projects';
 import Experience from './components/sections/Experience';
 import Contact from './components/sections/Contact';
 import Footer from './components/ui/Footer';
-import CustomCursor from './components/ui/CustomCursor'; // Make sure this path is correct
+import CustomCursor from './components/ui/CustomCursor'; 
+
 import './index.css';
 
 function App() {
