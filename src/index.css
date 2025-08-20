@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
@@ -158,6 +158,78 @@
       text-align: center;
       margin-bottom: 3rem;
     }
+
+    /* Gradient Section Titles with EB Garamond - True Gradient Text */
+    .gradient-title {
+      font-family: 'EB Garamond', serif;
+      font-weight: 700;
+      font-size: 3.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      /* Create true gradient text */
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      /* Ensure no background interference */
+      background-color: transparent !important;
+    }
+
+        /* Fire Theme - Golden to Orange Gradient */
+    [data-theme="fire"] .gradient-title {
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-highlight) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Ice Theme - Blue to Silver Gradient */
+    [data-theme="ice"] .gradient-title {
+      background: linear-gradient(135deg, var(--accent-highlight) 0%, var(--accent-primary) 50%, var(--accent-secondary) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Enhanced hover effects using theme colors */
+    .gradient-title:hover {
+      transform: scale(1.02);
+      transition: all 0.3s ease;
+    }
+
+    /* Alternative gradient approach using pseudo-elements for better compatibility */
+    .gradient-title-alt {
+      font-family: 'EB Garamond', serif;
+      font-weight: 700;
+      font-size: 3.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      color: var(--text-primary);
+    }
+
+    /* Fire Theme Alternative Gradient */
+    [data-theme="fire"] .gradient-title-alt {
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-highlight) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Ice Theme Alternative Gradient */
+    [data-theme="ice"] .gradient-title-alt {
+      background: linear-gradient(135deg, var(--accent-highlight) 0%, var(--accent-primary) 50%, var(--accent-secondary) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+
 
     /* Minimalist Hero Typography */
     .hero-minimalist-title {
