@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+
 import { 
   Heart, 
   Code2, 
@@ -11,6 +12,7 @@ import {
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
 
   const quickLinks = [
     { label: 'The Arsenal', href: '#skills' },
@@ -41,6 +43,7 @@ const Footer = () => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+
     }
   };
 
@@ -82,6 +85,7 @@ const Footer = () => {
                     href={link.href}
                     target={link.href.startsWith('mailto') ? '_self' : '_blank'}
                     rel="noopener noreferrer"
+
                     className="flex items-center justify-center w-10 h-10 bg-iron-grey border border-gold-accent/30 rounded-lg text-gold-accent hover:bg-gold-accent hover:text-night-black transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}

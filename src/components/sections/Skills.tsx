@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
+
 import { 
   Code2, 
   Brain, 
@@ -27,6 +28,7 @@ const Skills = () => {
   const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
 
   const skillCategories: SkillCategory[] = [
     {

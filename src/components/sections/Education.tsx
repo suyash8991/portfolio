@@ -3,6 +3,7 @@ import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { GraduationCap, Award, BookOpen, Calendar, MapPin } from 'lucide-react';
 
+
 interface Course {
   name: string;
   description?: string;
@@ -33,6 +34,7 @@ const Education = () => {
   const isInView = useInView(ref, { once: true });
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [dragonRotationState, setDragonRotationState] = useState(0);
+
   
   // Scroll progress for dragon animation
   const { scrollYProgress } = useScroll({

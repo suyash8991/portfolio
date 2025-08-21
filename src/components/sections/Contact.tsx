@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import { 
   MapPin, 
   Mail, 
@@ -24,6 +25,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
@@ -33,6 +35,7 @@ const Contact = () => {
       const mailtoLink = `mailto:suyash.sreekumar@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
         `Name: ${data.name}\nEmail: ${data.email}${data.company ? `\nCompany: ${data.company}` : ''}\n\nMessage:\n${data.message}`
       )}`;
+
       
       // Open default email client
       window.open(mailtoLink, '_blank');
@@ -186,6 +189,7 @@ const Contact = () => {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
+
                           className={`flex items-center gap-2 px-4 py-2 bg-iron-grey text-stark-white rounded transition-colors ${link.color} hover:bg-opacity-80`}
                         >
                           <img 

@@ -1,5 +1,6 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
+
 import { 
   ExternalLink, 
   Zap, 
@@ -44,6 +45,7 @@ const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
 
   const projects: Project[] = [
     {

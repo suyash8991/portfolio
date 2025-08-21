@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
+
 // Theme Context
 import { ThemeProvider } from './contexts/ThemeContext';
 
@@ -20,6 +21,8 @@ import './index.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  
+
 
   useEffect(() => {
     // Simulate loading time

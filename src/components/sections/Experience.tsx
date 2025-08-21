@@ -11,6 +11,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 
+
 interface Experience {
   id: string;
   title: string;
@@ -37,6 +38,7 @@ const Experience = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+
 
   const experiences: Experience[] = [
     {

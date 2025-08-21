@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+
 type Theme = 'ice' | 'fire';
 
 interface ThemeContextType {
@@ -17,6 +18,7 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('fire'); // Default to Fire theme
   const [isTransitioning, setIsTransitioning] = useState(false);
+
 
   // Load theme from localStorage on mount
   useEffect(() => {
@@ -42,6 +44,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     setIsTransitioning(true);
     
     const newTheme = theme === 'ice' ? 'fire' : 'ice';
+    
+
     
     // Immediate theme change to trigger animations
     setTheme(newTheme);
