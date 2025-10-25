@@ -62,7 +62,7 @@ const Projects = () => {
       description: "A full-stack RAG system using LangChain's ReAct agent framework to query Moffitt Cancer Center researcher data with natural language intelligence.",
       detailedDescription: "Advanced agentic RAG pipeline implementing LangChain ReAct agents, ChromaDB vector store, and FastAPI-React integration. Features hybrid search (semantic + keyword), multi-tool orchestration, and real-time streaming for intelligent researcher discovery and collaboration mapping.",
       status: "active",
-      timeline: "Oct 2024 – Present",
+      timeline: "Oct 25 – Present",
       technologies: ["FastAPI", "LangChain", "ChromaDB", "React 19", "TypeScript", "Groq API", "Docker", "WebSocket"],
       metrics: [
         { label: "Response Time", value: "2.3s", icon: <Timer className="w-4 h-4" /> },
@@ -110,7 +110,7 @@ const Projects = () => {
       description: "A full-stack construction management system for organizing, tracking, and evaluating residential construction projects with hierarchical inspection workflows.",
       detailedDescription: "Enterprise construction management platform enabling project lifecycle tracking, hierarchical phase management (categories → subcategories → items), real-time inspection recording, and comprehensive quality control reporting. Built as a monorepo with concurrent frontend-backend development.",
       status: "active",
-      timeline: "Sep 2024 – Present",
+      timeline: "Sep 2025 – Present",
       technologies: ["React 18", "Express.js", "SQLite3", "Tailwind CSS", "Radix UI", "Vite", "Node.js"],
       metrics: [
         { label: "API Coverage", value: "25+ Endpoints", icon: <Network className="w-4 h-4" /> },
@@ -133,7 +133,7 @@ const Projects = () => {
       description: "A Next.js full-stack movie platform with TMDb API integration, Clean Architecture, TDD methodology, and enterprise-grade JWT authentication.",
       detailedDescription: "Production-ready movie database platform featuring secure JWT authentication with refresh token rotation, TMDb API integration with caching, personalized watchlists and ratings, AI-powered recommendations, and PWA-style responsive design. Follows Clean Architecture (Controller → Service → Repository) with comprehensive test coverage.",
       status: "completed",
-      timeline: "Sep 2024",
+      timeline: "Sep 2025",
       technologies: ["Next.js 15", "TypeScript", "Express.js", "Prisma", "PostgreSQL", "Redis", "Docker", "Vercel", "Jest"],
       metrics: [
         { label: "Test Coverage", value: "80%+", icon: <CheckCircle className="w-4 h-4" /> },
@@ -181,7 +181,7 @@ const Projects = () => {
       description: "A sophisticated machine learning conquest that peers into the economic fates of individuals, achieving remarkable accuracy through advanced feature engineering.",
       detailedDescription: "Advanced machine learning pipeline implementing Random Forest classifiers with sophisticated feature engineering and minority class optimization. Features comprehensive statistical analysis and production-ready model deployment.",
       status: "completed",
-      timeline: "Jan 2024 – Mar 2024",
+      timeline: "Jan 2025 – Mar 2025",
       technologies: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "UCI Census Data"],
       metrics: [
         { label: "Accuracy", value: "86%", icon: <Target className="w-4 h-4" /> },
@@ -200,7 +200,7 @@ const Projects = () => {
     }
   ];
 
-  
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -253,8 +253,8 @@ const Projects = () => {
           </motion.div>
 
           {/* Interactive Project Cards */}
-          <motion.div 
-            variants={itemVariants} 
+          <motion.div
+            variants={itemVariants}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
           >
             {projects.map((project) => (
@@ -351,7 +351,7 @@ const Projects = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                
+
               >
                 {/* Click outside to close */}
                 <div className="absolute inset-0" onClick={() => setSelectedProject(null)} />
@@ -375,7 +375,7 @@ const Projects = () => {
 
                     {/* Right Side - Detailed Content */}
                     <div className="p-6 lg:p-8 overflow-y-auto" style={{ maxHeight: 'calc(95vh - 2rem)' }}>
-                      <motion.div 
+                      <motion.div
                         className="space-y-4 lg:space-y-6"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.4 } }}
@@ -389,7 +389,7 @@ const Projects = () => {
                           <p className="text-base lg:text-lg text-slate-300 font-medium mb-3">
                             {selectedProject.subtitle}
                           </p>
-                          
+
                           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-slate-400 text-sm">
                             <div className="flex items-center gap-2">
                               <Calendar className="w-4 h-4" />
@@ -483,7 +483,7 @@ const Projects = () => {
                             </a>
                           )}
                         </div>
-                        
+
                       </motion.div>
                     </div>
                   </div>
@@ -494,7 +494,7 @@ const Projects = () => {
 
           {/* Call to Action */}
           <motion.div variants={itemVariants} className="text-center mt-16">
-            <div className="p-8 rounded-2xl" style={{ 
+            <div className="p-8 rounded-2xl" style={{
               background: 'linear-gradient(135deg, var(--accent-primary)10, var(--accent-secondary)10)',
               border: '2px solid var(--accent-primary)'
             }}>
