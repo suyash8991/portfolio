@@ -1,0 +1,66 @@
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGradient)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="150" cy="150" r="80" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="650" cy="300" r="100" fill="#8b5cf6" opacity="0.1"/>
+
+  <!-- Icon representation (brain/neural network) -->
+  <g transform="translate(250, 120)">
+    <circle cx="50" cy="50" r="8" fill="#3b82f6"/>
+    <circle cx="100" cy="30" r="8" fill="#8b5cf6"/>
+    <circle cx="150" cy="50" r="8" fill="#3b82f6"/>
+    <circle cx="100" cy="80" r="8" fill="#8b5cf6"/>
+    <circle cx="50" cy="100" r="8" fill="#3b82f6"/>
+    <circle cx="150" cy="100" r="8" fill="#8b5cf6"/>
+
+    <line x1="50" y1="50" x2="100" y2="30" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
+    <line x1="100" y1="30" x2="150" y2="50" stroke="#8b5cf6" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="50" x2="100" y2="80" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
+    <line x1="150" y1="50" x2="100" y2="80" stroke="#8b5cf6" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="100" x2="100" y2="80" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
+    <line x1="150" y1="100" x2="100" y2="80" stroke="#8b5cf6" stroke-width="2" opacity="0.6"/>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="url(#accentGradient)" text-anchor="middle">
+    Moffitt Agentic RAG
+  </text>
+
+  <!-- Subtitle -->
+  <text x="400" y="315" font-family="Arial, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle">
+    The Oracle of Research
+  </text>
+
+  <!-- Tech stack badges -->
+  <g transform="translate(200, 350)">
+    <rect x="0" y="0" width="100" height="30" rx="15" fill="#3b82f6" opacity="0.2"/>
+    <text x="50" y="20" font-family="Arial, sans-serif" font-size="14" fill="#3b82f6" text-anchor="middle">FastAPI</text>
+
+    <rect x="110" y="0" width="110" height="30" rx="15" fill="#8b5cf6" opacity="0.2"/>
+    <text x="165" y="20" font-family="Arial, sans-serif" font-size="14" fill="#8b5cf6" text-anchor="middle">LangChain</text>
+
+    <rect x="230" y="0" width="110" height="30" rx="15" fill="#3b82f6" opacity="0.2"/>
+    <text x="285" y="20" font-family="Arial, sans-serif" font-size="14" fill="#3b82f6" text-anchor="middle">ChromaDB</text>
+
+    <rect x="350" y="0" width="90" height="30" rx="15" fill="#8b5cf6" opacity="0.2"/>
+    <text x="395" y="20" font-family="Arial, sans-serif" font-size="14" fill="#8b5cf6" text-anchor="middle">React 19</text>
+  </g>
+
+  <!-- Placeholder indicator -->
+  <text x="400" y="420" font-family="Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle" opacity="0.6">
+    Placeholder - Replace with actual screenshot
+  </text>
+</svg>

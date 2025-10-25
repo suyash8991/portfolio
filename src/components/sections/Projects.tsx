@@ -1,10 +1,10 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 
-import { 
-  ExternalLink, 
-  Zap, 
-  Target, 
+import {
+  ExternalLink,
+  Zap,
+  Target,
   Award,
   TrendingUp,
   Brain,
@@ -15,7 +15,14 @@ import {
   Calendar,
   Code,
   Lightbulb,
-  Expand // Icon for the hover hint
+  Expand, // Icon for the hover hint
+  Timer,
+  TrendingDown,
+  Network,
+  Layers,
+  Package,
+  CheckCircle,
+  ShieldCheck
 } from 'lucide-react';
 
 interface ProjectMetric {
@@ -49,6 +56,30 @@ const Projects = () => {
 
   const projects: Project[] = [
     {
+      id: "moffitt-agentic-rag",
+      title: "Moffitt Agentic RAG System",
+      subtitle: "The Oracle of Research",
+      description: "A full-stack RAG system using LangChain's ReAct agent framework to query Moffitt Cancer Center researcher data with natural language intelligence.",
+      detailedDescription: "Advanced agentic RAG pipeline implementing LangChain ReAct agents, ChromaDB vector store, and FastAPI-React integration. Features hybrid search (semantic + keyword), multi-tool orchestration, and real-time streaming for intelligent researcher discovery and collaboration mapping.",
+      status: "active",
+      timeline: "Oct 2024 – Present",
+      technologies: ["FastAPI", "LangChain", "ChromaDB", "React 19", "TypeScript", "Groq API", "Docker", "WebSocket"],
+      metrics: [
+        { label: "Response Time", value: "2.3s", icon: <Timer className="w-4 h-4" /> },
+        { label: "Retrieval Accuracy", value: "+37%", icon: <Target className="w-4 h-4" /> },
+        { label: "Cost Efficiency", value: "-42%", icon: <TrendingDown className="w-4 h-4" /> },
+        { label: "Discovery Speed", value: "Hours → Seconds", icon: <Zap className="w-4 h-4" /> },
+      ],
+      challenges: [
+        "Hybrid search design balancing semantic and keyword retrieval",
+        "Chunking heterogeneous researcher profiles for structured retrieval",
+        "API rate limiting and cost control across multiple LLM providers"
+      ],
+      impact: "Reduced researcher discovery time from hours to seconds with 5× performance improvement and cross-departmental collaboration visibility",
+      image: `projects/moffitt_rag.png`,
+      githubUrl: "https://github.com/suyash8991/agentic-rag-moffitt"
+    },
+    {
       id: "osu-chatbot",
       title: "OSU Research Chatbot",
       subtitle: "The All-Seeing Eye of Knowledge",
@@ -73,13 +104,60 @@ const Projects = () => {
       githubUrl: "https://github.com/suyash8991/osu-research-chatbot"
     },
     {
+      id: "whitehead-construction",
+      title: "Whitehead Construction Management",
+      subtitle: "Architect of Digital Realms",
+      description: "A full-stack construction management system for organizing, tracking, and evaluating residential construction projects with hierarchical inspection workflows.",
+      detailedDescription: "Enterprise construction management platform enabling project lifecycle tracking, hierarchical phase management (categories → subcategories → items), real-time inspection recording, and comprehensive quality control reporting. Built as a monorepo with concurrent frontend-backend development.",
+      status: "active",
+      timeline: "Sep 2024 – Present",
+      technologies: ["React 18", "Express.js", "SQLite3", "Tailwind CSS", "Radix UI", "Vite", "Node.js"],
+      metrics: [
+        { label: "API Coverage", value: "25+ Endpoints", icon: <Network className="w-4 h-4" /> },
+        { label: "Hierarchical Depth", value: "3 Levels", icon: <Layers className="w-4 h-4" /> },
+        { label: "Query Efficiency", value: "+35% faster", icon: <Zap className="w-4 h-4" /> },
+        { label: "Component Reuse", value: "15+ modules", icon: <Package className="w-4 h-4" /> },
+      ],
+      challenges: [
+        "Designing flexible hierarchical data structure in relational schema",
+        "Implementing efficient upsert patterns for inspection results",
+        "SQLite optimization using WAL mode and prepared statements"
+      ],
+      impact: "Reduced manual inspection tracking time by 60% with real-time monitoring and scalable architecture ready for PostgreSQL migration",
+      image: `projects/whitehead_construction.png`
+    },
+    {
+      id: "movie-vault",
+      title: "Movie Vault",
+      subtitle: "Keeper of Cinematic Legends",
+      description: "A Next.js full-stack movie platform with TMDb API integration, Clean Architecture, TDD methodology, and enterprise-grade JWT authentication.",
+      detailedDescription: "Production-ready movie database platform featuring secure JWT authentication with refresh token rotation, TMDb API integration with caching, personalized watchlists and ratings, AI-powered recommendations, and PWA-style responsive design. Follows Clean Architecture (Controller → Service → Repository) with comprehensive test coverage.",
+      status: "completed",
+      timeline: "Sep 2024",
+      technologies: ["Next.js 15", "TypeScript", "Express.js", "Prisma", "PostgreSQL", "Redis", "Docker", "Vercel", "Jest"],
+      metrics: [
+        { label: "Test Coverage", value: "80%+", icon: <CheckCircle className="w-4 h-4" /> },
+        { label: "API Latency", value: "<100ms", icon: <Zap className="w-4 h-4" /> },
+        { label: "Security", value: "0 high-severity", icon: <ShieldCheck className="w-4 h-4" /> },
+        { label: "Cache Hit Rate", value: "~70%", icon: <TrendingUp className="w-4 h-4" /> },
+      ],
+      challenges: [
+        "Implementing secure dual-token JWT rotation with blacklist logic",
+        "Maintaining TDD discipline throughout Red-Green-Refactor cycles",
+        "TMDb API rate-limiting mitigation through intelligent caching"
+      ],
+      impact: "Reduced API latency from 500ms to <100ms, achieved 80%+ test coverage with zero authentication vulnerabilities, demonstrating production-ready Clean Architecture adoption",
+      image: `projects/movie_vault.png`,
+      githubUrl: "https://github.com/suyash8991/movievault"
+    },
+    {
       id: "parkinsons-prediction",
       title: "Parkinson's Disease Prediction",
       subtitle: "Voice of the Future",
       description: "A machine learning project that analyzes vocal biomarkers to predict Parkinson's Disease with high accuracy.",
       detailedDescription: "Comprehensive machine learning pipeline utilizing ensemble methods and feature engineering to analyze vocal biomarkers for early Parkinson's detection. Implements cross-validation and hyperparameter optimization for maximum predictive power.",
       status: "completed",
-      timeline: "Mar 2025 – May 2025",
+      timeline: "Mar 2024 – May 2024",
       technologies: ["Python", "Scikit-learn", "XGBoost", "Pandas", "NumPy", "Matplotlib", "Kaggle Dataset"],
       metrics: [
         { label: "Best Accuracy", value: "92.31%", icon: <Brain className="w-4 h-4" /> },
@@ -121,6 +199,8 @@ const Projects = () => {
       githubUrl: "https://github.com/suyash8991/income-prediction"
     }
   ];
+
+  
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -164,11 +244,11 @@ const Projects = () => {
             </h2>
             <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ backgroundColor: 'var(--accent-primary)' }}></div>
             <p className="text-lg italic mb-4" style={{ color: 'var(--accent-primary)' }}>
-              Legendary achievements in AI & data science
+              Legendary achievements in software engineering & AI
             </p>
             <p className="text-base max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Innovative projects that demonstrate mastery of artificial intelligence, 
-              machine learning, and enterprise-grade system development in real-world scenarios.
+              Innovative projects that demonstrate mastery of full-stack development,
+              artificial intelligence, machine learning, and enterprise-grade system architecture in real-world scenarios.
             </p>
           </motion.div>
 
@@ -182,11 +262,15 @@ const Projects = () => {
                 key={project.id}
                 layoutId={`project-card-${project.id}`}
                 onClick={() => setSelectedProject(project)}
-                className="relative overflow-hidden cursor-pointer rounded-xl bg-gradient-to-br from-slate-700/20 via-slate-600/20 to-slate-800/20 border border-slate-700/50 backdrop-blur-sm"
+                className="relative overflow-hidden cursor-pointer rounded-xl bg-gradient-to-br from-slate-700/20 via-slate-600/20 to-slate-800/20 border border-slate-700/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400/60 focus:ring-offset-slate-900"
                 style={{ backgroundImage: "radial-gradient(circle at 20% 80%, rgba(148,163,184,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(148,163,184,0.1) 0%, transparent 50%)" }}
                 initial="rest"
                 whileHover="hover"
                 animate="rest"
+                role="button"
+                aria-label={`Open details for ${project.title}`}
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedProject(project); } }}
               >
                 {/* Background overlay for readability */}
                 <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[1px]" />
@@ -196,6 +280,7 @@ const Projects = () => {
                     src={project.image}
                     alt={`${project.title} preview`}
                     className="w-full h-full object-contain"
+                    loading="lazy"
                     style={{ objectPosition: 'center' }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
@@ -266,11 +351,14 @@ const Projects = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setSelectedProject(null)}
+                
               >
+                {/* Click outside to close */}
+                <div className="absolute inset-0" onClick={() => setSelectedProject(null)} />
+
                 <motion.div
                   layoutId={`project-card-${selectedProject.id}`}
-                  className="w-full max-w-7xl bg-slate-800/95 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden"
+                  className="relative z-10 w-full max-w-7xl bg-slate-800/95 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                   style={{ maxHeight: '95vh' }}
                 >
@@ -395,6 +483,7 @@ const Projects = () => {
                             </a>
                           )}
                         </div>
+                        
                       </motion.div>
                     </div>
                   </div>
