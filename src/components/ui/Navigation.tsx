@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
@@ -8,14 +8,14 @@ const Navigation = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { id: 'hero', primary: 'Home', secondary: 'The Throne', href: '#hero' },
     { id: 'skills', primary: 'Skills', secondary: 'The Arsenal', href: '#skills' },
     { id: 'education', primary: 'Education', secondary: 'Houses of Learning', href: '#education' },
     { id: 'projects', primary: 'Portfolio', secondary: 'Epic Conquests', href: '#projects' },
     { id: 'experience', primary: 'Experience', secondary: 'Path of Honor', href: '#experience' },
     { id: 'contact', primary: 'Contact', secondary: 'Send Raven', href: '#contact' }
-  ];
+  ], []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +39,7 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navItems]);
 
   const scrollToSection = (href: string) => {
     const sectionId = href.replace('#', '');

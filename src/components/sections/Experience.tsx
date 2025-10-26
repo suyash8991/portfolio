@@ -186,7 +186,7 @@ const Experience = () => {
 
             {/* Experience Cards */}
             <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-              {experiences.map((exp, _) => (
+              {experiences.map((exp) => (
                 <motion.div
                   key={exp.id}
                   variants={itemVariants}
