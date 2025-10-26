@@ -11,19 +11,25 @@
 ### Phase 1: Setup & Foundation
 - [2025-10-26] Created refactoring branch `refactor/code-structure`
 - [2025-10-26] Created progress tracking document
+- [2025-10-26] Fixed all ESLint errors (4 errors, 1 warning):
+  - Contact.tsx: Removed unused error parameter
+  - Experience.tsx: Removed unused underscore parameter
+  - Navigation.tsx: Memoized navItems array with useMemo
+  - ThemeContext.tsx: Extracted hooks to separate file (src/hooks/useTheme.ts)
+  - All components updated to import useTheme from hooks
 
 ---
 
 ## 🔄 In Progress
 
-- Phase 1.2: Fixing ESLint errors
+- Phase 2.1: Extracting type definitions
 
 ---
 
 ## ⏳ Pending
 
 ### Phase 1: Setup & Foundation
-- [ ] Fix ESLint errors (4 errors, 1 warning)
+- [x] Fix ESLint errors (4 errors, 1 warning)
 
 ### Phase 2: Type Definitions & Data Layer
 - [ ] Extract type definitions to `src/types/index.ts`
@@ -62,7 +68,7 @@ _None yet_
 
 ## 🔄 Rollback Points (Stable Commits)
 
-_Will be updated after each successful phase_
+- `6fff6ad` - Phase 1 complete: All ESLint errors fixed, hooks extracted
 
 ---
 
